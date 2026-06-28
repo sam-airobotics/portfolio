@@ -441,7 +441,7 @@
   .contact-links{display:flex;flex-direction:column;gap:12px;align-items:center;}
   .contact-link{
     font-family:var(--mono);font-size:14.5px;color:var(--text);
-    border:1px solid var(--border);border-radius:5px;padding:12px 22px;
+    border:1px solid var(--border);border-radius:5px;padding:12px 15px;
     width:100%;max-width:380px;text-align:left;display:flex;align-items:center;gap:10px;
     transition:.2s;
   }
