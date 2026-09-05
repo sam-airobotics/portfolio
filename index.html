@@ -23,11 +23,10 @@
 <div class="nav-mobile" id="navMobile"><a data-nav href="#about">about</a><a data-nav href="#stack">stack</a><a data-nav href="#work">work</a><a data-nav href="#contact">contact</a><a class="nav-cta-mobile" href="https://github.com/sam-airobotics" rel="noopener" target="_blank">GitHub ↗</a></div>
 </header>
 <main>
-
 <section class="hero hero--cinematic" id="home">
 <div class="hero-media" aria-hidden="true">
 <video id="heroVideo" class="hero-video" muted playsinline preload="auto" poster="https://raw.githubusercontent.com/sam-airobotics/amr-simulation/main/resources/images/amr.png">
-<source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260622_083515_290e5a10-0b95-41af-a5e2-32b6389baa4d.mp4" type="video/mp4"/>
+<source src="https://labs.google/fx/api/og-video/shared/41e696eb-dca8-4a89-9265-a328aa0433bf" type="video/mp4"/>
 </video>
 <div class="hero-video-fallback"></div>
 <div class="hero-grid-overlay"></div>
@@ -73,7 +72,7 @@
 (function(){
   const video=document.getElementById('heroVideo');
   if(!video) return;
-  const sensitivity=0.75;
+  const sensitivity=0.8;
   let lastX=null, target=0, seeking=false, pending=null;
   const seekTo=(time)=>{
     if(!video.duration || Number.isNaN(video.duration)) return;
@@ -91,35 +90,28 @@
     seekTo(target);
   });
   window.addEventListener('mouseleave',()=>{lastX=null;});
-
-  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduced){
-    video.removeAttribute('preload');
-    video.style.opacity='.18';
-  }
-
   document.querySelectorAll('.scramble').forEach((el)=>{
     const text=el.dataset.text||el.textContent||'';
     const delay=parseInt(el.dataset.delay||'0',10);
     el.textContent='';
+    const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~|}{[]:;?><';
     setTimeout(()=>{
-      const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*';
-      let frame=0;
+      let cursor=0;
       const interval=setInterval(()=>{
-        const reveal=Math.floor(frame/2);
-        let out='';
+        cursor += 0.5;
+        const reveal=Math.floor(cursor);
+        if(reveal>=text.length){el.textContent=text;clearInterval(interval);return;}
+        let next='';
         for(let i=0;i<text.length;i++){
           const c=text[i];
-          if(c===' ') out+=' ';
-          else if(i<reveal) out+=c;
-          else if(i<reveal+3) out+=chars[Math.floor(Math.random()*chars.length)];
-          else out+=' ';
+          if(c===' ') next+=' ';
+          else if(i<reveal) next+=c;
+          else if(i<reveal+3) next+=chars[Math.floor(Math.random()*chars.length)];
+          else next+=' ';
         }
-        el.textContent=out;
-        frame++;
-        if(reveal>=text.length){el.textContent=text;clearInterval(interval);}
+        el.textContent=next;
       },25);
-    },delay);
+    },800+delay);
   });
 })();
 </script>
