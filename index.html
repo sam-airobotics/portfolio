@@ -34,12 +34,51 @@
 <article class="project-card reveal"><h3>void_ai</h3><div class="project-visual project-visual--void" aria-label="void AI visual"><div class="void-mark">VOID<span>_AI</span></div><span class="visual-label">AI / TERMINAL</span></div><header class="project-head"><span class="project-status">Completed</span><span class="project-lang">Python</span></header><p>Terminal-based AI assistant with optional voice mode, designed to run directly from the command line.</p><div class="project-terminal"><p><span class="prompt">$</span>./launch_void.sh</p><p class="out">void_ai booting<span class="dots"></span></p></div><a href="https://github.com/sam-airobotics/void_ai" target="_blank" rel="noopener" class="project-link">View repository ↗</a></article>
 <article class="project-card reveal"><h3>FusionToDescription</h3><div class="project-visual project-visual--fusion" aria-label="Fusion to Description visual"><div class="fusion-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="visual-label">CAD / ROS2 PIPELINE</span></div><header class="project-head"><span class="project-status">Development</span><span class="project-lang">Python · Fusion API</span></header><p>Fusion 360 add-in that automatically exports the Robot Description Package according to the Ros2 Distro and simulation platform.</p><div class="project-terminal"><p><span class="prompt">$</span>export assembly</p><p class="out">generating package<span class="dots"></span></p></div><a href="https://github.com/sam-airobotics/FusionToDescription" target="_blank" rel="noopener" class="project-link">View repository ↗</a></article>
 </div></div></section>
-<section class="signal"><div class="section-inner"><p class="section-eyebrow reveal">04 / signal</p><h2 class="reveal">GitHub Signal</h2><div class="signal-grid reveal"><img alt="GitHub activity for sam-airobotics" loading="lazy" src="github-stats.svg"><div class="github-profile-card"><div class="github-profile-card__label">GITHUB PROFILE</div><div class="github-profile-card__name">sam-airobotics</div><p>Repository activity and projects are maintained directly on GitHub.</p><a href="https://github.com/sam-airobotics" target="_blank" rel="noopener" class="project-link">Open GitHub profile ↗</a></div></div></div></section>
+<section class="signal"><div class="section-inner"><p class="section-eyebrow reveal">04 / signal</p><h2 class="reveal">Live from GitHub</h2><div class="signal-grid signal-grid--live reveal">
+<div class="github-live-card"><div class="github-live-card__top"><span class="github-live-card__label">GITHUB PROFILE</span><span class="github-live-card__status"><i></i>LIVE</span></div><div class="github-live-card__identity"><div><div class="github-live-card__name" id="githubName">sam-airobotics</div><div class="github-live-card__bio" id="githubBio">Loading GitHub profile…</div></div><div class="github-live-card__avatar" id="githubAvatar"></div></div><div class="github-live-stats"><div><span id="githubRepos">—</span><small>repositories</small></div><div><span id="githubFollowers">—</span><small>followers</small></div><div><span id="githubFollowing">—</span><small>following</small></div><div><span id="githubGists">—</span><small>gists</small></div></div><div class="github-live-meta"><span>PROFILE DATA <strong id="githubUpdated">fetching…</strong></span><a href="https://github.com/sam-airobotics" target="_blank" rel="noopener">Open GitHub ↗</a></div></div>
+<div class="github-activity-card"><div class="github-activity-card__top"><span class="github-activity-card__label">RECENT ACTIVITY</span><span class="github-activity-card__status"><i></i>LIVE API</span></div><div class="github-activity-list" id="githubActivity"><div class="github-activity-loading">Fetching recent commits…</div></div><a class="project-link" href="https://github.com/sam-airobotics?tab=overview" target="_blank" rel="noopener">View GitHub activity ↗</a></div>
+</div></div></section>
 <section class="contact" id="contact"><div class="section-inner contact-inner"><p class="section-eyebrow reveal">05 / contact</p><h2 class="reveal">Building something in robotics or AI?</h2><p class="reveal">I'm always up for talking robots, swapping SLAM war stories, or hearing about what you're building.</p><div class="contact-links reveal"><a class="contact-link" href="https://github.com/sam-airobotics" rel="noopener" target="_blank">GitHub ↗</a></div></div></section>
 </main>
 <script src="js/main.js"></script>
 <script>
-(function(){const video=document.getElementById('heroVideo');if(!video)return;const sensitivity=.8;let lastX=null,target=0,seeking=false,pending=null;const seekTo=time=>{if(!video.duration||Number.isNaN(video.duration))return;const clamped=Math.max(0,Math.min(video.duration,time));if(seeking){pending=clamped;return}seeking=true;video.currentTime=clamped};video.addEventListener('loadedmetadata',()=>{target=video.currentTime||0});video.addEventListener('seeked',()=>{seeking=false;if(pending!==null){const t=pending;pending=null;seekTo(t)}});window.addEventListener('mousemove',e=>{if(!video.duration)return;if(lastX===null){lastX=e.clientX;return}const dx=e.clientX-lastX;lastX=e.clientX;target+=(dx/window.innerWidth)*sensitivity*video.duration;seekTo(target)});window.addEventListener('mouseleave',()=>{lastX=null});})();
+(function(){
+const video=document.getElementById('heroVideo');
+if(video){const sensitivity=.8;let lastX=null,target=0,seeking=false,pending=null;const seekTo=time=>{if(!video.duration||Number.isNaN(video.duration))return;const clamped=Math.max(0,Math.min(video.duration,time));if(seeking){pending=clamped;return}seeking=true;video.currentTime=clamped};video.addEventListener('loadedmetadata',()=>{target=video.currentTime||0});video.addEventListener('seeked',()=>{seeking=false;if(pending!==null){const t=pending;pending=null;seekTo(t)}});window.addEventListener('mousemove',e=>{if(!video.duration)return;if(lastX===null){lastX=e.clientX;return}const dx=e.clientX-lastX;lastX=e.clientX;target+=(dx/window.innerWidth)*sensitivity*video.duration;seekTo(target)});window.addEventListener('mouseleave',()=>{lastX=null})}
+const username='sam-airobotics';
+const number=n=>new Intl.NumberFormat().format(n);
+const esc=s=>String(s??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]));
+async function githubJSON(url){const r=await fetch(url,{headers:{'Accept':'application/vnd.github+json'}});if(!r.ok)throw new Error('GitHub API '+r.status);return r.json()}
+async function loadGithub(){
+ try{
+  const profile=await githubJSON(`https://api.github.com/users/${username}`);
+  document.getElementById('githubName').textContent=profile.login||username;
+  document.getElementById('githubBio').textContent=profile.bio||'Robotics & AI development, simulation and autonomous systems.';
+  document.getElementById('githubRepos').textContent=number(profile.public_repos??0);
+  document.getElementById('githubFollowers').textContent=number(profile.followers??0);
+  document.getElementById('githubFollowing').textContent=number(profile.following??0);
+  document.getElementById('githubGists').textContent=number(profile.public_gists??0);
+  document.getElementById('githubAvatar').innerHTML=`<img src="${esc(profile.avatar_url)}" alt="${esc(profile.login||username)} GitHub avatar">`;
+  document.getElementById('githubUpdated').textContent='live';
+ }catch(e){document.getElementById('githubBio').textContent='GitHub profile data unavailable right now.';document.getElementById('githubUpdated').textContent='unavailable'}
+ try{
+  const repos=await githubJSON(`https://api.github.com/users/${username}/repos?sort=pushed&direction=desc&per_page=8`);
+  const activity=[];
+  for(const repo of repos.slice(0,5)){
+   try{
+    const commits=await githubJSON(`https://api.github.com/repos/${username}/${repo.name}/commits?per_page=1`);
+    if(commits[0]) activity.push({repo:repo.name,message:commits[0].commit?.message?.split('\n')[0]||'Recent commit',date:commits[0].commit?.author?.date||repo.pushed_at,url:commits[0].html_url});
+   }catch(_){activity.push({repo:repo.name,message:'Recently updated repository',date:repo.pushed_at,url:repo.html_url})}
+  }
+  activity.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const wrap=document.getElementById('githubActivity');
+  if(!activity.length){wrap.innerHTML='<div class="github-activity-loading">No recent public activity found.</div>';return}
+  wrap.innerHTML=activity.slice(0,5).map(item=>`<a class="github-activity-item" href="${esc(item.url)}" target="_blank" rel="noopener"><span class="github-activity-dot"></span><span class="github-activity-copy"><strong>${esc(item.repo)}</strong><span>${esc(item.message)}</span></span><time datetime="${esc(item.date)}">${new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric'}).format(new Date(item.date))}</time></a>`).join('');
+ }catch(e){document.getElementById('githubActivity').innerHTML='<div class="github-activity-loading">Live activity could not be loaded. Open GitHub for the latest activity.</div>'}
+}
+loadGithub();
+setInterval(loadGithub,300000);
+})();
 </script>
 </body>
 </html>
