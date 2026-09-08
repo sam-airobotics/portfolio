@@ -1,0 +1,1 @@
+The uploaded resume is named Resume ROS(1).pdf in the conversation. GitHub connector cannot write binary PDF bytes through the text-file API. resume.html is prepared to use assets/docs/Resume ROS(1).pdf once the PDF is uploaded to this path.
