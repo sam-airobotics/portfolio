@@ -35,3 +35,16 @@
 .project-info-dialog{position:fixed;inset:0;margin:auto;width:min(540px,calc(100% - 32px));max-width:none;padding:30px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(145deg,rgba(184,92,255,.12),transparent 45%),var(--panel);color:var(--text);box-shadow:0 30px 100px rgba(0,0,0,.7)}
 .project-info-dialog::backdrop{background:rgba(0,0,0,.76);backdrop-filter:blur(7px)}
 .project-info-dialog .section-eyebrow{display:block;margin:0 0 16px;font-size:10px}.project-info-dialog .project-status{display:inline-block;margin-bottom:12px}.project-info-dialog h2{font:600 clamp(27px,4vw,36px) var(--display);margin:0 0 12px}.project-info-dialog p{color:var(--muted);font-size:14px;line-height:1.8}.project-info-dialog .project-tags{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}.project-info-close{position:absolute;right:14px;top:10px;border:0;background:transparent;color:var(--muted);font-size:30px;cursor:pointer}.project-info-dialog .project-link{display:inline-block}
+
+/* Final carousel sizing and reliable pointer interaction */
+.projects-page .project-ring-stage{height:clamp(560px,62vw,700px);min-height:560px;perspective:1900px;overflow:visible;touch-action:pan-y}
+.projects-page .project-ring{width:clamp(400px,54vw,680px);max-width:70vw}
+.projects-page .ring-card{pointer-events:auto;cursor:grab;touch-action:pan-y}
+.projects-page .project-ring-stage.is-dragging,.projects-page .project-ring-stage.is-dragging *{cursor:grabbing;user-select:none}
+.projects-page .ring-card:not(.is-front){filter:brightness(.7)}
+.projects-page .ring-card.is-front{filter:brightness(1)}
+.projects-page .ring-hint{bottom:0}
+.projects-page .ring-controls{margin:16px 0 0}
+.project-info-dialog:not([open]){display:none}
+.project-info-dialog[open]{display:block}
+@media(max-width:700px){.projects-page .project-ring-stage{height:470px;min-height:470px}.projects-page .project-ring{width:clamp(300px,82vw,480px);max-width:82vw}}
