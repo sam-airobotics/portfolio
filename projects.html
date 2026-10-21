@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sameer | Projects</title>
 <link rel="icon" type="image/png" href="assets/images/void.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/portfolio-fix.css">
+<style>
+.project-scroll-page{padding-top:64px;background:#05070a}
+.project-scroll-page .project-heading{padding:38px 28px 20px;max-width:1180px;margin:auto;position:relative;z-index:2}
+.project-scroll-page .project-heading h1{font:600 clamp(38px,5vw,58px)/1.08 var(--display);letter-spacing:-.04em;margin:0 0 10px}
+.project-scroll-page .project-heading>p:last-child{margin:0;color:var(--muted);font-size:14px}
+.project-scroll-page .project-rail{position:relative}
+.project-scroll-page .project-stage{position:sticky;top:64px;height:calc(100vh - 64px);min-height:620px;overflow:hidden;background:#05070a;background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1.2px);background-size:24px 24px;perspective:1500px;perspective-origin:50% 50%}
+.project-scroll-page .project-helix{position:absolute;inset:0;transform-style:preserve-3d}
+.project-scroll-page .project-pole{position:absolute;left:50%;top:-10%;width:8px;height:120%;margin-left:-4px;border-radius:8px;background:linear-gradient(90deg,#1a1a1a,#4a4a4a 50%,#1a1a1a);opacity:.32;pointer-events:none}
+.project-scroll-page .scroll-card{position:absolute;left:50%;top:50%;width:var(--card-w,min(34vw,560px));aspect-ratio:3/2;margin-left:calc(var(--card-w,min(34vw,560px)) / -2);margin-top:calc(var(--card-w,min(34vw,560px)) / 3 / -2);transform-style:preserve-3d;cursor:pointer;outline:none;will-change:transform;--b:1;--o:1}
+.project-scroll-page .scroll-card:focus-visible .front-face{outline:2px solid #b98cff;outline-offset:4px}
+.project-scroll-page .face{position:absolute;inset:0;border-radius:12px;overflow:hidden;background-color:#111;background-position:center;background-size:cover;backface-visibility:hidden;-webkit-backface-visibility:hidden;filter:brightness(var(--b));opacity:var(--o);box-shadow:0 18px 50px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.13)}
+.project-scroll-page .face::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.16) 45%,rgba(0,0,0,.72))}
+.project-scroll-page .back-face{transform:rotateY(180deg);background:#111}
+.project-scroll-page .back-face::after{background:rgba(0,0,0,.7)}
+.project-scroll-page .card-label{position:absolute;inset:0;z-index:1;display:grid;place-items:center;text-align:center;padding:0 8%;font:700 clamp(14px,3.5cqw,30px)/1.12 var(--display);text-transform:uppercase;letter-spacing:.025em;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.8);pointer-events:none}
+.project-scroll-page .card-kicker{position:absolute;z-index:2;left:18px;bottom:15px;font:10px var(--mono);letter-spacing:.13em;color:#fff}
+.project-scroll-page .info-panel{position:absolute;z-index:5;top:50%;width:min(310px,23vw);padding:19px 20px 20px;background:rgba(12,14,19,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.15);border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s,transform .5s cubic-bezier(.22,.8,.24,1)}
+.project-scroll-page .project-summary{left:3vw;transform:translate(-34px,-50%)}
+.project-scroll-page .project-side{right:3vw;transform:translate(34px,-50%);padding:0;background:none;border:0;box-shadow:none;backdrop-filter:none;display:flex;flex-direction:column;gap:12px}
+.project-scroll-page .project-side .info-box{padding:16px 19px;background:rgba(12,14,19,.88);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.15);border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.55);opacity:0;transform:translateX(28px);transition:opacity .3s,transform .5s cubic-bezier(.22,.8,.24,1)}
+.project-scroll-page .project-stage.info-open .info-panel{opacity:1;pointer-events:auto;transform:translate(0,-50%)}
+.project-scroll-page .project-stage.info-open .project-side{transform:translate(0,-50%)}
+.project-scroll-page .project-stage.info-open .project-side .info-box{opacity:1;transform:none}
+.project-scroll-page .project-stage.info-open .project-side .info-box:nth-child(2){transition-delay:.08s}
+.project-scroll-page .eyebrow{font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0}
+.project-scroll-page .project-summary h2{font:600 clamp(20px,1.8vw,25px)/1.15 var(--display);text-transform:none;letter-spacing:-.02em;margin:10px 0}
+.project-scroll-page .summary-text{font-size:12.5px;line-height:1.75;color:#c9cdd5;margin:0}
+.project-scroll-page .project-status{display:flex;align-items:center;gap:9px;margin:11px 0 0;font-size:13px;font-weight:600;text-transform:uppercase}
+.project-scroll-page .status-dot{width:8px;height:8px;border-radius:50%;background:#b98cff;box-shadow:0 0 10px currentColor}
+.project-scroll-page .status-detail{color:#b9bec8;font-size:12px;line-height:1.6;margin-top:7px}
+.project-scroll-page .skills-list{display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:12px 0 0}
+.project-scroll-page .skills-list li{font:10px var(--mono);letter-spacing:.03em;color:#eceef3;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:5px 9px}
+.project-scroll-page .project-repo{display:inline-block;margin-top:14px;color:#9bbcff;font:11px var(--mono);letter-spacing:.02em}
+.project-scroll-page .project-repo:hover{color:#fff}
+.project-scroll-page .scroll-hint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#777;pointer-events:none;transition:opacity .25s}
+.project-scroll-page .project-stage.info-open .scroll-hint{opacity:0}
+.project-scroll-page .project-scroll-end{height:10vh;display:grid;place-items:center;color:#596171;font:10px var(--mono);letter-spacing:.16em}
+@media(max-width:1000px){.project-scroll-page .info-panel{width: min(280px,27vw);padding:15px}.project-scroll-page .project-summary h2{font-size:19px}.project-scroll-page .summary-text{font-size:11.5px}.project-scroll-page .project-stage{min-height:680px}}
+@media(max-width:760px){.project-scroll-page .project-heading{padding:30px 20px 10px}.project-scroll-page .project-stage{top:64px;height:calc(100svh - 64px);min-height:700px}.project-scroll-page .scroll-card{width:76vw;margin-left:-38vw;margin-top:calc(76vw / 3 / -2)}.project-scroll-page .info-panel,.project-scroll-page .project-side{width:92vw;left:4vw;right:auto}.project-scroll-page .project-summary{top:12px;transform:translateY(-18px)}.project-scroll-page .project-stage.info-open .project-summary{transform:none}.project-scroll-page .project-side{top:auto;bottom:12px;transform:translateY(18px);gap:8px}.project-scroll-page .project-stage.info-open .project-side{transform:none}.project-scroll-page .project-side .info-box{padding:10px 14px}.project-scroll-page .project-side .info-box:nth-child(2){display:none}.project-scroll-page .project-summary h2{font-size:18px;margin:5px 0}.project-scroll-page .summary-text{font-size:11px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.project-scroll-page .project-status{margin-top:4px;font-size:11px}.project-scroll-page .status-detail{display:none}.project-scroll-page .skills-list{margin-top:7px;gap:5px}.project-scroll-page .skills-list li{font-size:9px;padding:4px 7px}.project-scroll-page .project-repo{margin-top:7px}.project-scroll-page .scroll-hint{bottom:6px;font-size:9px}.project-scroll-page .card-kicker{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.project-scroll-page .info-panel,.project-scroll-page .project-side .info-box{transition:none}}
+</style>
 </head>
 <body>
 <div class="bg-grid"></div>
@@ -15,30 +57,52 @@
 <nav class="nav-links"><a href="index.html">home</a><a href="about.html">about</a><a href="skills.html">skills</a><a class="is-active" href="projects.html">projects</a><a href="resume.html">resume</a><a href="contact.html">contact</a></nav>
 <a class="nav-cta" href="https://github.com/sam-airobotics" target="_blank" rel="noopener">GitHub ↗</a>
 </div></header>
-<main><section class="work projects-page"><div class="section-inner">
-<p class="section-eyebrow">03 / projects</p><h1>Things I’m building</h1>
-<p class="ring-intro">A rotating view of my robotics, simulation and engineering projects.</p>
-<div class="project-ring-stage" id="projectStage" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Project carousel. Drag, scroll horizontally, or use arrow keys to rotate.">
-<div class="project-ring" id="projectRing">
-<a class="ring-card" href="https://github.com/sam-airobotics/amr-simulation" target="_blank" rel="noopener" data-title="AMR Simulation" data-status="ACTIVE" data-description="Differential-drive autonomous mobile robot in ROS 2 and Gazebo with LiDAR, camera integration, mapping, localization and Nav2." data-tags="ROS 2|Gazebo|SLAM|Nav2" data-repo="https://github.com/sam-airobotics/amr-simulation" aria-label="AMR Simulation project">
-<img src="https://raw.githubusercontent.com/sam-airobotics/amr-simulation/main/resources/videos/amr_sim.gif" alt="AMR Simulation preview"><span class="ring-card-label">AMR / AUTONOMY</span></a>
-<a class="ring-card" href="https://github.com/sam-airobotics/cortex" target="_blank" rel="noopener" data-title="Cortex — Cura" data-status="ACTIVE" data-description="A hospital-assistance robot concept focused on medicine delivery, perception, safe navigation and human-centred interaction." data-tags="ROS 2|SLAM|Nav2|Robotics" data-repo="https://github.com/sam-airobotics/cortex" aria-label="Cortex Cura project">
-<img src="https://raw.githubusercontent.com/sam-airobotics/cortex/main/assets/videos/cura.gif" alt="Cortex Cura simulation"><span class="ring-card-label">CORTEX / CURA</span></a>
-<a class="ring-card" href="https://github.com/sam-airobotics/robotic-arm-simulation" target="_blank" rel="noopener" data-title="Robotic Arm Simulation" data-status="BUILDING" data-description="A robotic manipulation project exploring motion planning, trajectory generation and simulated arm control with MoveIt." data-tags="ROS 2|MoveIt|Python" data-repo="https://github.com/sam-airobotics/robotic-arm-simulation" aria-label="Robotic Arm Simulation project">
-<img src="https://raw.githubusercontent.com/sam-airobotics/robotic-arm-simulation/feature/description_pkg/assets/images/robotic-arm-rviz.png" alt="Robotic arm in RViz"><span class="ring-card-label">MANIPULATION</span></a>
-<a class="ring-card" href="https://github.com/sam-airobotics/void_ai" target="_blank" rel="noopener" data-title="void_ai" data-status="COMPLETE" data-description="A terminal-based AI assistant with optional voice interaction, designed to run directly from the command line." data-tags="Python|AI|Voice" data-repo="https://github.com/sam-airobotics/void_ai" aria-label="void_ai project">
-<div class="ring-placeholder">VOID<span>_AI</span></div><span class="ring-card-label">AI / TERMINAL</span></a>
-<a class="ring-card" href="https://github.com/sam-airobotics/FusionToDescription" target="_blank" rel="noopener" data-title="F2D Studio" data-status="BUILDING" data-description="A Fusion 360 automation tool that exports robot description packages for ROS 2 workflows—connecting CAD assemblies to robotics simulation." data-tags="Fusion 360|Python|ROS 2" data-repo="https://github.com/sam-airobotics/FusionToDescription" aria-label="F2D Studio project">
-<img src="https://raw.githubusercontent.com/sam-airobotics/FusionToDescription/main/resources/icons/Fusion2Description_Logo.png" alt="FusionToDescription logo"><span class="ring-card-label">CAD / AUTOMATION</span></a>
-<a class="ring-card" href="https://github.com/sam-airobotics/hexapod_simulation" target="_blank" rel="noopener" data-title="Hexapod Simulation" data-status="ACTIVE" data-description="An 18-DOF six-legged robot simulation built with ROS 2 Jazzy and Gazebo Harmonic. Includes a configurable tripod gait controller, ros2_control integration, simulated LiDAR, camera and IMU, EKF state estimation, and SLAM/Nav2 configuration." data-tags="ROS 2 Jazzy|Gazebo Harmonic|18-DOF|Tripod Gait|SLAM|Nav2" data-repo="https://github.com/sam-airobotics/hexapod_simulation" aria-label="Hexapod Simulation project">
-<img src="https://raw.githubusercontent.com/sam-airobotics/hexapod_simulation/main/assets/images/hexapod_gazebo.png" alt="Hexapod robot simulation in Gazebo"><span class="ring-card-label">LEGGED ROBOTICS</span></a>
+<main class="project-scroll-page">
+<div class="project-heading"><p class="section-eyebrow">03 / projects</p><h1>Things I’m building</h1><p>Scroll to explore each project. Select a tile to jump to its details.</p></div>
+<section class="project-rail" id="projectRail" aria-label="Project showcase">
+<div class="project-stage" id="projectStage">
+<div class="project-helix" id="projectHelix">
+<div class="project-pole"></div>
+<div class="scroll-card" tabindex="0" role="button" data-title="AMR Simulation" data-summary="A differential-drive autonomous mobile robot built in ROS 2 and Gazebo. The simulation brings together robot description, LiDAR sensing, mapping, localization, and autonomous navigation workflows." data-status="Simulation / autonomy" data-focus="Autonomous mobile robotics" data-skills="ROS 2|Gazebo|URDF / Xacro|LiDAR|SLAM|Nav2" data-repo="https://github.com/sam-airobotics/amr-simulation" style="--card-bg:url('https://raw.githubusercontent.com/sam-airobotics/amr-simulation/main/resources/videos/amr_sim.gif')"><div class="face front-face" style="background-image:var(--card-bg)"><span class="card-label">AMR<br>Simulation</span><span class="card-kicker">MOBILE ROBOTICS</span></div><div class="face back-face"></div></div>
+<div class="scroll-card" tabindex="0" role="button" data-title="Cortex — Cura" data-summary="A hospital-assistance robot concept designed around medicine transport, barcode-based workflows, safe navigation, and human-centred interaction. The platform explores a compact mobile base with a simplified humanoid upper body." data-status="Concept / development" data-focus="Assistive and service robotics" data-skills="Robot design|ROS 2|Navigation|HMI|Perception|Human-robot interaction" data-repo="https://github.com/sam-airobotics/cortex" style="--card-bg:url('https://raw.githubusercontent.com/sam-airobotics/cortex/main/assets/videos/cura.gif')"><div class="face front-face" style="background-image:var(--card-bg)"><span class="card-label">Cortex<br>— Cura</span><span class="card-kicker">ASSISTIVE ROBOTICS</span></div><div class="face back-face"></div></div>
+<div class="scroll-card" tabindex="0" role="button" data-title="Robotic Arm Simulation" data-summary="A simulated manipulation workflow focused on robot modelling, joint motion, trajectory planning, and validating arm behaviour in a ROS visualisation and simulation pipeline." data-status="Simulation / development" data-focus="Robotic manipulation" data-skills="ROS 2|MoveIt|RViz|Robot modelling|Trajectory planning" data-repo="https://github.com/sam-airobotics/robotic-arm-simulation" style="--card-bg:url('https://raw.githubusercontent.com/sam-airobotics/robotic-arm-simulation/feature/description_pkg/assets/images/robotic-arm-rviz.png')"><div class="face front-face" style="background-image:var(--card-bg)"><span class="card-label">Robotic Arm<br>Simulation</span><span class="card-kicker">MANIPULATION</span></div><div class="face back-face"></div></div>
+<div class="scroll-card" tabindex="0" role="button" data-title="void_ai" data-summary="A Python-based terminal assistant project exploring an AI-driven command-line workflow with optional voice interaction. The project brings together application logic and a lightweight developer-facing interface." data-status="Application project" data-focus="AI tooling and voice interaction" data-skills="Python|AI integration|CLI|Voice interface|Git" data-repo="https://github.com/sam-airobotics/void_ai" style="--card-bg:linear-gradient(135deg,#10131c,#272039 55%,#090a0d)"><div class="face front-face" style="background-image:var(--card-bg)"><span class="card-label">VOID<br><span style="color:#bd80ff">_AI</span></span><span class="card-kicker">AI / TERMINAL</span></div><div class="face back-face"></div></div>
+<div class="scroll-card" tabindex="0" role="button" data-title="F2D Studio" data-summary="A Fusion 360 automation add-in intended to streamline exporting robot description packages for ROS workflows. It connects CAD assembly structure with robot-description generation to reduce repetitive setup in simulation pipelines." data-status="Tooling / development" data-focus="CAD-to-robotics workflow automation" data-skills="Autodesk Fusion 360|Python|CAD automation|URDF|ROS 2" data-repo="https://github.com/sam-airobotics/FusionToDescription" style="--card-bg:url('https://raw.githubusercontent.com/sam-airobotics/FusionToDescription/main/resources/icons/Fusion2Description_Logo.png')"><div class="face front-face" style="background-image:var(--card-bg)"><span class="card-label">F2D Studio</span><span class="card-kicker">CAD / AUTOMATION</span></div><div class="face back-face"></div></div>
+<div class="scroll-card" tabindex="0" role="button" data-title="Hexapod Simulation" data-summary="An 18-DOF six-legged robot simulation using ROS 2 Jazzy and Gazebo Harmonic. The repository includes a tripod-gait controller, ros2_control integration, simulated LiDAR, camera and IMU, EKF state-estimation configuration, and SLAM/Nav2 launch support." data-status="Legged robotics / simulation" data-focus="Gait control and locomotion" data-skills="ROS 2 Jazzy|Gazebo Harmonic|18-DOF|Tripod gait|ros2_control|SLAM|Nav2" data-repo="https://github.com/sam-airobotics/hexapod_simulation" style="--card-bg:url('https://raw.githubusercontent.com/sam-airobotics/hexapod_simulation/main/assets/images/hexapod_gazebo.png')"><div class="face front-face" style="background-image:var(--card-bg)"><span class="card-label">Hexapod<br>Simulation</span><span class="card-kicker">LEGGED ROBOTICS</span></div><div class="face back-face"></div></div>
 </div>
-<dialog class="project-info-dialog" id="projectInfoDialog" aria-labelledby="dialogProjectTitle"><button class="project-info-close" id="closeProjectInfo" type="button" aria-label="Close project information">×</button><span class="section-eyebrow">PROJECT DETAILS</span><span class="project-status" id="dialogProjectStatus">ACTIVE</span><h2 id="dialogProjectTitle">Project</h2><p id="dialogProjectDescription"></p><div class="project-tags" id="dialogProjectTags"></div><a id="dialogProjectRepo" class="project-link" href="#" target="_blank" rel="noopener">Explore repository ↗</a></dialog>
-
+<aside class="info-panel project-summary" id="projectSummary" aria-live="polite"><p class="eyebrow" id="projectIndex"></p><h2 id="projectTitle"></h2><p class="summary-text" id="projectSummaryText"></p><a class="project-repo" id="projectRepo" href="#" target="_blank" rel="noopener">Explore repository ↗</a></aside>
+<div class="info-panel project-side" id="projectSide"><section class="info-box"><p class="eyebrow">Project category</p><div class="project-status"><span class="status-dot"></span><span id="projectStatus"></span></div><p class="status-detail" id="projectFocus"></p></section><section class="info-box"><p class="eyebrow">Technologies &amp; skills</p><ul class="skills-list" id="projectSkills"></ul></section></div>
+<p class="scroll-hint" id="scrollHint">Scroll to navigate · select a tile for details</p>
 </div>
-<div class="ring-controls" aria-label="Carousel controls"><button type="button" id="ringPrev" aria-label="Previous project">←</button><span id="ringCounter">01 / 05</span><button type="button" id="ringNext" aria-label="Next project">→</button></div>
-
-</div></section></main>
+</section>
+<div class="project-scroll-end">END OF PROJECTS</div>
+</main>
 <footer class="footer"><div class="section-inner footer-inner"><span>© 2026 SAM-AIROBOTICS</span><span>DESIGN · SIMULATE · VALIDATE · DEPLOY</span></div></footer>
-<script src="js/project-ring.js"></script>
+<script>
+(function(){
+const rail=document.getElementById('projectRail'),stage=document.getElementById('projectStage'),cards=[...document.querySelectorAll('.scroll-card')],helix=document.getElementById('projectHelix'),pole=document.querySelector('.project-pole'),N=cards.length;
+const $=id=>document.getElementById(id);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const settings={scrollPerCard:.9,deg:66,radius:1.08,lift:.48,fadeStart:3.4,fadeEnd:4.8,backDim:.48,smooth:reduce?1:.14,snap:!reduce,snapDelay:140,infoDelay:230};
+let cur=0,target=0,cardW=0,cardH=0,lastScroll=performance.now(),openIndex=-1,dismissed=false,focus=0,snapTimer=0,frame=0;
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+function smoothstep(a,b,x){x=clamp((x-a)/(b-a),0,1);return x*x*(3-2*x)}
+function railTop(){return rail.getBoundingClientRect().top+window.scrollY}
+function scrollRange(){return Math.max(1,rail.offsetHeight-window.innerHeight)}
+function measure(){cardW=cards[0].offsetWidth;cardH=cards[0].offsetHeight;pole.style.transform='translateZ('+(-settings.radius*cardW)+'px)';rail.style.height=(window.innerHeight*(1+(N-1)*settings.scrollPerCard))+'px';readScroll();cur=target;layout()}
+function readScroll(){const p=clamp((window.scrollY-railTop())/scrollRange(),0,1);target=p*(N-1)}
+function layout(){for(let i=0;i<N;i++){const d=i-cur,ad=Math.abs(d),th=d*settings.deg*Math.PI/180,x=settings.radius*cardW*Math.sin(th),z=settings.radius*cardW*(Math.cos(th)-1),y=d*settings.lift*cardH,facing=(Math.cos(th)+1)/2,bright=settings.backDim+(1-settings.backDim)*facing,opacity=(1-smoothstep(settings.fadeStart,settings.fadeEnd,ad))*(1-.88*focus*smoothstep(0,.6,ad)),c=cards[i];c.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,'+z.toFixed(1)+'px) rotateY('+(d*settings.deg).toFixed(2)+'deg)';c.style.setProperty('--b',bright.toFixed(3));c.style.setProperty('--o',opacity.toFixed(3));c.style.pointerEvents=opacity<.05?'none':'auto';c.setAttribute('aria-current',ad<.5?'true':'false')}}
+function fillPanels(i){const d=cards[i].dataset;$('projectIndex').textContent='PROJECT '+String(i+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');$('projectTitle').textContent=d.title;$('projectSummaryText').textContent=d.summary;$('projectStatus').textContent=d.status;$('projectFocus').textContent=d.focus;$('projectRepo').href=d.repo;const ul=$('projectSkills');ul.replaceChildren(...d.skills.split('|').map(s=>{const li=document.createElement('li');li.textContent=s;return li}))}
+function showPanels(i){if(openIndex===i)return;fillPanels(i);openIndex=i;stage.classList.add('info-open')}
+function hidePanels(){if(openIndex===-1)return;openIndex=-1;stage.classList.remove('info-open')}
+function updatePanels(now){const top=rail.getBoundingClientRect().top,pinned=top<=65&&top>=-(rail.offsetHeight-window.innerHeight)-1,idx=clamp(Math.round(cur),0,N-1),still=Math.abs(cur-idx)<.02&&Math.abs(target-cur)<.02&&now-lastScroll>settings.infoDelay;if(pinned&&still&&!dismissed)showPanels(idx);else if(!pinned||!still)hidePanels();focus+=((openIndex>=0?1:0)-focus)*.12}
+function goTo(i){i=clamp(i,0,N-1);dismissed=false;window.scrollTo({top:railTop()+(i/(N-1))*scrollRange(),behavior:reduce?'auto':'smooth'})}
+function scheduleSnap(){if(!settings.snap)return;clearTimeout(snapTimer);snapTimer=setTimeout(()=>{const p=(window.scrollY-railTop())/scrollRange();if(p<=0||p>=1)return;goTo(Math.round(p*(N-1)))},settings.snapDelay)}
+cards.forEach((c,i)=>{c.addEventListener('click',()=>{if(Math.abs(cur-i)<.34){if(openIndex===i){dismissed=true;hidePanels()}else{dismissed=false;showPanels(i)}}else goTo(i)});c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goTo(i);setTimeout(()=>{if(Math.abs(cur-i)<.4){dismissed=false;showPanels(i)}},450)}else if(['ArrowDown','ArrowRight'].includes(e.key)){e.preventDefault();goTo(Math.min(i+1,N-1));cards[Math.min(i+1,N-1)].focus({preventScroll:true})}else if(['ArrowUp','ArrowLeft'].includes(e.key)){e.preventDefault();goTo(Math.max(i-1,0));cards[Math.max(i-1,0)].focus({preventScroll:true})}})});
+window.addEventListener('scroll',()=>{lastScroll=performance.now();dismissed=false;scheduleSnap()},{passive:true});
+window.addEventListener('keydown',e=>{if(e.key==='Escape'){dismissed=true;hidePanels()}});
+function tick(now){readScroll();const diff=target-cur;cur=Math.abs(diff)<.0005?target:cur+diff*settings.smooth;layout();updatePanels(now);frame=requestAnimationFrame(tick)}
+window.addEventListener('resize',measure);document.documentElement.style.setProperty('--card-ratio-num','1.5');measure();requestAnimationFrame(tick);
+})();
+</script>
 </body></html>
