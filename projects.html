@@ -48,6 +48,27 @@
 @media(max-width:1000px){.project-scroll-page .info-panel{width: min(280px,27vw);padding:15px}.project-scroll-page .project-summary h2{font-size:19px}.project-scroll-page .summary-text{font-size:11.5px}.project-scroll-page .project-stage{min-height:680px}}
 @media(max-width:760px){.project-scroll-page .project-heading{padding:30px 20px 10px}.project-scroll-page .project-stage{top:64px;height:calc(100svh - 64px);min-height:700px}.project-scroll-page .scroll-card{width:76vw;margin-left:-38vw;margin-top:calc(76vw / 3 / -2)}.project-scroll-page .info-panel,.project-scroll-page .project-side{width:92vw;left:4vw;right:auto}.project-scroll-page .project-summary{top:12px;transform:translateY(-18px)}.project-scroll-page .project-stage.info-open .project-summary{transform:none}.project-scroll-page .project-side{top:auto;bottom:12px;transform:translateY(18px);gap:8px}.project-scroll-page .project-stage.info-open .project-side{transform:none}.project-scroll-page .project-side .info-box{padding:10px 14px}.project-scroll-page .project-side .info-box:nth-child(2){display:none}.project-scroll-page .project-summary h2{font-size:18px;margin:5px 0}.project-scroll-page .summary-text{font-size:11px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.project-scroll-page .project-status{margin-top:4px;font-size:11px}.project-scroll-page .status-detail{display:none}.project-scroll-page .skills-list{margin-top:7px;gap:5px}.project-scroll-page .skills-list li{font-size:9px;padding:4px 7px}.project-scroll-page .project-repo{margin-top:7px}.project-scroll-page .scroll-hint{bottom:6px;font-size:9px}.project-scroll-page .card-kicker{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.project-scroll-page .info-panel,.project-scroll-page .project-side .info-box{transition:none}}
+
+/* Intro hero: keep project helix below the first viewport */
+.project-scroll-page .projects-intro{min-height:calc(100svh - 64px);padding:clamp(42px,8vh,90px) 28px 34px;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);position:relative;overflow:hidden}
+.project-scroll-page .projects-intro::before{content:"";position:absolute;width:min(60vw,760px);height:min(60vw,760px);right:-10%;top:8%;border-radius:50%;border:1px solid rgba(185,140,255,.11);box-shadow:0 0 0 60px rgba(185,140,255,.018),0 0 0 120px rgba(185,140,255,.012);pointer-events:none}
+.project-scroll-page .projects-intro-inner{max-width:1180px;width:100%;margin:0 auto;position:relative;z-index:1}
+.project-scroll-page .projects-intro .section-eyebrow{margin-bottom:22px}
+.project-scroll-page .projects-intro h1{font:600 clamp(48px,8.2vw,108px)/.98 var(--display);letter-spacing:-.065em;margin:0;max-width:950px}
+.project-scroll-page .projects-intro h1 span{color:transparent;-webkit-text-stroke:1px rgba(244,247,251,.72)}
+.project-scroll-page .intro-copy{max-width:610px;margin:26px 0 34px;color:var(--muted);font-size:clamp(14px,1.3vw,17px);line-height:1.8}
+.project-scroll-page .intro-manifesto{display:flex;align-items:center;gap:15px;min-height:clamp(72px,9vw,112px);font-family:var(--display);font-size:clamp(36px,6vw,72px);font-weight:600;letter-spacing:-.045em}
+.project-scroll-page .manifesto-i{color:#f4f7fb}
+.project-scroll-page .flip-words{position:relative;display:inline-block;min-width:clamp(250px,38vw,500px);height:1.25em;perspective:700px;color:#b98cff}
+.project-scroll-page .flip-word{position:absolute;inset:0;display:flex;align-items:center;transform-origin:50% 50% -35px;opacity:0;transform:rotateX(-90deg) translateY(24px);backface-visibility:hidden;transition:transform .65s cubic-bezier(.2,.75,.25,1),opacity .4s ease}
+.project-scroll-page .flip-word.active{opacity:1;transform:rotateX(0) translateY(0)}
+.project-scroll-page .intro-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;max-width:680px;margin-top:clamp(34px,6vh,62px);font:10px var(--mono);letter-spacing:.16em;color:#737d8b}
+.project-scroll-page .intro-arrow{display:inline-block;margin-left:8px;color:#b98cff;font-size:17px;animation:intro-bob 1.5s ease-in-out infinite}
+@keyframes intro-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.project-scroll-page .project-rail{margin-top:0}
+.project-scroll-page .project-stage{top:64px}
+@media(max-width:760px){.project-scroll-page .projects-intro{padding:40px 20px 28px;min-height:calc(100svh - 64px)}.project-scroll-page .projects-intro h1{font-size:clamp(43px,12vw,76px)}.project-scroll-page .intro-copy{margin:20px 0 26px;font-size:13px}.project-scroll-page .intro-manifesto{font-size:clamp(34px,9vw,54px);gap:10px}.project-scroll-page .flip-words{min-width:0;width:calc(100vw - 115px)}.project-scroll-page .intro-bottom{font-size:9px;letter-spacing:.1em;margin-top:32px}}
+@media(prefers-reduced-motion:reduce){.project-scroll-page .flip-word{transition:none}.project-scroll-page .intro-arrow{animation:none}}
 </style>
 </head>
 <body>
@@ -58,7 +79,20 @@
 <a class="nav-cta" href="https://github.com/sam-airobotics" target="_blank" rel="noopener">GitHub ↗</a>
 </div></header>
 <main class="project-scroll-page">
-<div class="project-heading"><p class="section-eyebrow">03 / projects</p><h1>Things I’m building</h1><p>Scroll to explore each project. Select a tile to jump to its details.</p></div>
+<section class="projects-intro" aria-labelledby="projectsIntroTitle">
+<div class="projects-intro-inner">
+<p class="section-eyebrow">03 / selected work</p>
+<h1 id="projectsIntroTitle">Ideas engineered<br><span>into reality.</span></h1>
+<p class="intro-copy">Below are projects I’ve designed, simulated, programmed, and automated — from autonomous robots and legged locomotion to CAD-to-ROS tools and AI applications.</p>
+<div class="intro-manifesto" aria-label="I design, simulate, program, automate">
+<span class="manifesto-i">I</span>
+<div class="flip-words" aria-live="polite">
+<span class="flip-word active">design.</span><span class="flip-word">simulate.</span><span class="flip-word">program.</span><span class="flip-word">automate.</span>
+</div>
+</div>
+<div class="intro-bottom"><span>06 PROJECTS</span><span>SCROLL TO EXPLORE <span class="intro-arrow">↓</span></span></div>
+</div>
+</section>
 <section class="project-rail" id="projectRail" aria-label="Project showcase">
 <div class="project-stage" id="projectStage">
 <div class="project-helix" id="projectHelix">
@@ -105,4 +139,7 @@ function tick(now){readScroll();const diff=target-cur;cur=Math.abs(diff)<.0005?t
 window.addEventListener('resize',measure);document.documentElement.style.setProperty('--card-ratio-num','1.5');measure();requestAnimationFrame(tick);
 })();
 </script>
-</body></html>
+<script>
+/* Hero flip-text effect */
+(function(){const words=[...document.querySelectorAll('.flip-word')];if(!words.length)return;const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let index=0;words.forEach((w,i)=>w.classList.toggle('active',i===0));if(reduce)return;setInterval(()=>{words[index].classList.remove('active');index=(index+1)%words.length;words[index].classList.add('active')},1900)})();
+</script>\n</body></html>
