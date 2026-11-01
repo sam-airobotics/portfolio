@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="assets/images/void.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/portfolio-fix.css">
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/portfolio-fix.css"><link rel="stylesheet" href="css/top-circular-nav.css">
 <style>
 .project-scroll-page{padding-top:64px;background:#05070a}
 .project-scroll-page .project-heading{padding:38px 28px 20px;max-width:1180px;margin:auto;position:relative;z-index:2}
@@ -104,12 +104,22 @@
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
-<header class="nav"><div class="nav-inner">
-<a class="logo" href="index.html"><img src="assets/images/void.png" alt="VOID" class="logo-icon"><span>sam-airobotics</span></a>
-<nav class="nav-links"><a href="index.html">home</a><a href="about.html">about</a><a href="skills.html">skills</a><a class="is-active" href="projects.html">projects</a><a href="resume.html">resume</a><a href="contact.html">contact</a></nav>
-<a class="nav-cta" href="https://github.com/sam-airobotics" target="_blank" rel="noopener">GitHub ↗</a>
-</div></header>
+<div class="bg-grid"></div><button class="topnav-trigger" id="topnavTrigger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="topnavOverlay"><img src="assets/images/black%20hole.png" alt=""></button>
+<div class="topnav-overlay" id="topnavOverlay" aria-hidden="true">
+ <nav class="topnav-fan" id="topnavFan" aria-label="Main navigation">
+  <ul>
+   <li style="--i:0;--a:255deg"><a href="index.html"><span>Home</span></a></li>
+   <li style="--i:1;--a:225deg"><a href="about.html"><span>About</span></a></li>
+   <li style="--i:2;--a:195deg"><a href="skills.html"><span>Skills</span></a></li>
+   <li style="--i:3;--a:165deg"><a href="projects.html"><span>Projects</span></a></li>
+   <li style="--i:4;--a:135deg"><a href="resume.html"><span>Resume</span></a></li>
+   <li style="--i:5;--a:105deg"><a href="contact.html"><span>Contact</span></a></li>
+  </ul>
+  <div class="topnav-hub"></div>
+  <button class="topnav-close" id="topnavClose" type="button" aria-label="Close navigation">×</button>
+ </nav>
+</div>
+
 <main class="project-scroll-page">
 <section class="projects-intro" aria-labelledby="projectsIntroTitle">
 <div class="projects-intro-inner">
@@ -175,4 +185,4 @@ window.addEventListener('resize',measure);document.documentElement.style.setProp
 <script>
 /* Hero flip-text effect */
 (function(){const words=[...document.querySelectorAll('.flip-word')];if(!words.length)return;const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let index=0;words.forEach((w,i)=>w.classList.toggle('active',i===0));if(reduce)return;setInterval(()=>{words[index].classList.remove('active');index=(index+1)%words.length;words[index].classList.add('active')},1900)})();
-</script>\n</body></html>
+</script>\n<script src="js/top-circular-nav.js"></script></body></html>
