@@ -50,3 +50,36 @@ body.topnav-open{overflow:hidden}
  .topnav-close{width:54px;height:54px;font-size:23px}
 }
 @media(prefers-reduced-motion:reduce){.topnav-overlay,.topnav-fan li,.topnav-fan a,.topnav-trigger{transition:none}}
+
+/* Screenshot refinement: keep the black-hole trigger clean and labels readable */
+.topnav-trigger,
+.topnav-trigger:hover,
+.topnav-trigger:focus,
+.topnav-trigger:focus-visible{
+ outline:none!important;
+ border-color:transparent;
+ box-shadow:none!important;
+}
+.topnav-trigger{background:transparent}
+.topnav-trigger img{
+ display:block;
+ width:100%;
+ height:100%;
+ object-fit:contain;
+ border-radius:50%;
+ filter:drop-shadow(0 0 8px rgba(0,170,255,.22));
+}
+/* The trigger itself toggles the menu, so no separate white close disc is needed. */
+.topnav-close{display:none!important}
+.topnav-fan a span{
+ display:block;
+ transform:rotate(180deg);
+ transform-origin:center;
+ white-space:nowrap;
+}
+.topnav-fan a{
+ text-shadow:0 1px 8px rgba(0,0,0,.9);
+}
+.topnav-fan a:hover,.topnav-fan a:focus-visible{
+ color:#75e1ff;
+}
