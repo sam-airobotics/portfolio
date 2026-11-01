@@ -789,3 +789,52 @@ body.orbit-menu-open{overflow:hidden}
   .orbit-overlay.is-open .fan{transform:translateX(-50%)}
   .fan-hub,.fan-orb{left:50%;top:100%}
 }
+
+
+/* Precise black-hole anchor: trigger and fan close button share one point */
+@media (min-width:761px){
+  .hero--orbit{
+    --blackhole-center-x:46.8vw;
+    --blackhole-center-y:59.2vh;
+  }
+  .hero--orbit .orbit-trigger{
+    left:var(--blackhole-center-x);
+    top:var(--blackhole-center-y);
+    transform:translate(-50%,-50%);
+  }
+  .orbit-overlay .fan{
+    left:var(--blackhole-center-x);
+    top:calc(var(--blackhole-center-y) - var(--R));
+    transform:translateX(-50%);
+  }
+  .orbit-overlay.is-open .fan{
+    transform:translateX(-50%);
+  }
+  .fan-hub,.fan-orb{
+    left:50%;
+    top:100%;
+  }
+}
+@media (max-width:760px){
+  .hero--orbit{
+    --blackhole-center-x:50vw;
+    --blackhole-center-y:48vh;
+  }
+  .hero--orbit .orbit-trigger{
+    left:var(--blackhole-center-x);
+    top:var(--blackhole-center-y);
+    transform:translate(-50%,-50%);
+  }
+  .orbit-overlay .fan{
+    left:var(--blackhole-center-x);
+    top:calc(var(--blackhole-center-y) - var(--R));
+    transform:translateX(-50%);
+  }
+  .orbit-overlay.is-open .fan{
+    transform:translateX(-50%);
+  }
+  .fan-hub,.fan-orb{
+    left:50%;
+    top:100%;
+  }
+}
