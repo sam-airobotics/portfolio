@@ -62,3 +62,23 @@ header.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,7,10
 .hero--cyberpunk .cyberpunk-side a{margin-top:8px;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);padding:10px 13px;letter-spacing:.14em;transition:background .2s,border-color .2s}
 .hero--cyberpunk .cyberpunk-side a:hover{background:rgba(255,255,255,.1);border-color:#fff}
 @media(max-width:760px){.hero--cyberpunk{min-height:calc(100svh - 60px);height:calc(100svh - 60px)}.hero--cyberpunk .cyberpunk-art{background-size:cover;background-position:52% center}.hero--cyberpunk .cyberpunk-side{right:18px;bottom:22px;font-size:8px}.hero--cyberpunk .cyberpunk-side a{padding:8px 10px}}
+
+/* Minimal identity panel beside the Cyberpunk homepage artwork */
+body.home-page .footer{display:none!important}
+.hero--cyberpunk{position:relative;isolation:isolate;display:flex;align-items:center;min-height:calc(100svh - 64px);height:calc(100svh - 64px);overflow:hidden;background:#020305}
+.hero--cyberpunk .cyberpunk-art{position:absolute;inset:0 auto 0 0;width:76%;background-color:#020305;background-image:url("../assets/images/Cyberpunk.png");background-repeat:no-repeat;background-position:center;background-size:contain}
+.hero--cyberpunk .cyberpunk-intro{position:absolute;z-index:3;right:clamp(28px,7vw,112px);top:50%;transform:translateY(-50%);width:min(27%,360px);color:#f4f4f7;text-align:left}
+.hero--cyberpunk .cyberpunk-kicker{margin:0 0 22px;font:9px var(--mono);letter-spacing:.22em;color:#ff4545}
+.hero--cyberpunk .cyberpunk-kicker span{color:rgba(255,255,255,.5);margin-left:8px}
+.hero--cyberpunk .cyberpunk-intro h1{margin:0;font:600 clamp(42px,5vw,76px)/.98 var(--display);letter-spacing:-.065em}
+.hero--cyberpunk .cyberpunk-intro h1 span{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.8)}
+.hero--cyberpunk .cyberpunk-role{margin:24px 0 0;font:500 12px var(--mono);letter-spacing:.32em;color:rgba(255,255,255,.76)}
+.hero--cyberpunk .cyberpunk-role span{color:#ff4545}
+@media(max-width:760px){
+ .hero--cyberpunk{min-height:calc(100svh - 60px);height:calc(100svh - 60px)}
+ .hero--cyberpunk .cyberpunk-art{width:100%;height:72%;top:0;bottom:auto;background-size:contain;background-position:center top}
+ .hero--cyberpunk .cyberpunk-intro{top:auto;bottom:10%;right:8%;transform:none;width:84%;text-align:right}
+ .hero--cyberpunk .cyberpunk-intro h1{font-size:clamp(42px,11vw,64px)}
+ .hero--cyberpunk .cyberpunk-kicker{margin-bottom:12px}
+ .hero--cyberpunk .cyberpunk-role{margin-top:12px;font-size:10px}
+}
