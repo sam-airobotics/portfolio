@@ -4,5 +4,10 @@
     <p class="cyberpunk-kicker">INTRODUCTION <span>// 01</span></p>
     <h1>This is<br><span>Sameer.</span></h1>
     <p class="cyberpunk-role">ROBOTICS <span>&amp;</span> AI</p>
+    <div class="cyberpunk-actions">
+      <a class="cyberpunk-button cyberpunk-button--primary" href="about.html">About me <span>↗</span></a>
+      <a class="cyberpunk-button" href="projects.html">Explore Projects <span>↗</span></a>
+      <a class="cyberpunk-button" href="contact.html">Contact me <span>↗</span></a>
+    </div>
   </div>
 </section></main><footer class="footer"><div class="section-inner footer-inner"><span>© 2026 SAM-AIROBOTICS</span><span>DESIGN · SIMULATE · VALIDATE · DEPLOY</span></div></footer><script src="js/main.js"></script><script src="js/final-touch.js"></script><script>(function(){const video=document.getElementById('heroVideo');if(video){let lastX=null,target=0,seeking=false,pending=null;const sensitivity=.8;const seekTo=t=>{if(!video.duration||Number.isNaN(video.duration))return;const c=Math.max(0,Math.min(video.duration,t));if(seeking){pending=c;return}seeking=true;video.currentTime=c};video.addEventListener('loadedmetadata',()=>target=video.currentTime||0);video.addEventListener('seeked',()=>{seeking=false;if(pending!==null){const t=pending;pending=null;seekTo(t)}});window.addEventListener('mousemove',e=>{if(!video.duration)return;if(lastX===null){lastX=e.clientX;return}const dx=e.clientX-lastX;lastX=e.clientX;target+=(dx/window.innerWidth)*sensitivity*video.duration;seekTo(target)});window.addEventListener('mouseleave',()=>lastX=null)}document.querySelectorAll('.scramble').forEach(el=>{const text=el.dataset.text||'';const delay=parseInt(el.dataset.delay||'0',10);const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';el.textContent='';setTimeout(()=>{let n=0;const timer=setInterval(()=>{n+=.6;const r=Math.floor(n);if(r>=text.length){el.textContent=text;clearInterval(timer);return}let s='';for(let i=0;i<text.length;i++){const c=text[i];if(c===' ')s+=' ';else if(i<r)s+=c;else if(i<r+3)s+=chars[Math.floor(Math.random()*chars.length)];else s+=' '}el.textContent=s},28)},delay)});})();</script></body></html>
