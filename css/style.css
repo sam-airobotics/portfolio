@@ -151,3 +151,11 @@ body.home-page .footer{display:none!important}
 @media(max-width:760px){
  .hero--cyberpunk .cyberpunk-intro{pointer-events:auto}
 }
+
+/* Give the Cyberpunk portrait breathing room so the full head remains visible */
+@media(min-width:761px){
+ .hero--cyberpunk .cyberpunk-art{
+   background-size:auto 90%;
+   background-position:center center;
+ }
+}
