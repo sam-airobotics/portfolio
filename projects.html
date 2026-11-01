@@ -78,6 +78,13 @@
 .project-scroll-page .project-summary{top:50%;left:3vw;transform:translate(-34px,-50%);width:min(310px,23vw)}
 .project-scroll-page .project-summary .summary-text{font-size:12.5px;line-height:1.75;color:#c9cdd5;margin:0}
 @media(max-width:760px){.project-scroll-page .project-title-top{top:9%;width:90vw}.project-scroll-page .project-title-top h2{font-size:24px}.project-scroll-page .project-summary{top:auto;bottom:12px;left:4vw;width:92vw;transform:translateY(18px)}.project-scroll-page .project-stage.info-open .project-summary{transform:none}}
+
+/* Larger featured project tile and safe title clearance below sticky navigation */
+.project-scroll-page .scroll-card{width:clamp(620px,44vw,780px);margin-left:clamp(620px,44vw,780px)/-2;margin-top:calc(clamp(620px,44vw,780px) / 3 / -2)}
+.project-scroll-page .project-title-top{top:clamp(112px,17vh,168px);width:min(900px,70vw);z-index:30}
+.project-scroll-page .project-title-top h2{font-size:clamp(32px,3.4vw,48px);line-height:1.12;white-space:normal;overflow:visible}
+@media(max-width:1000px){.project-scroll-page .scroll-card{width:clamp(480px,52vw,650px);margin-left:clamp(480px,52vw,650px)/-2;margin-top:calc(clamp(480px,52vw,650px) / 3 / -2)}}
+@media(max-width:760px){.project-scroll-page .scroll-card{width:84vw;margin-left:-42vw;margin-top:calc(84vw / 3 / -2)}.project-scroll-page .project-title-top{top:92px;width:92vw}.project-scroll-page .project-title-top h2{font-size:clamp(25px,6vw,34px)}}
 </style>
 </head>
 <body>
