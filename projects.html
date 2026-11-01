@@ -44,7 +44,7 @@
 .project-scroll-page .project-repo:hover{color:#fff}
 .project-scroll-page .scroll-hint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#777;pointer-events:none;transition:opacity .25s}
 .project-scroll-page .project-stage.info-open .scroll-hint{opacity:0}
-.project-scroll-page .project-scroll-end{height:10vh;display:grid;place-items:center;color:#596171;font:10px var(--mono);letter-spacing:.16em}
+
 @media(max-width:1000px){.project-scroll-page .info-panel{width: min(280px,27vw);padding:15px}.project-scroll-page .project-summary h2{font-size:19px}.project-scroll-page .summary-text{font-size:11.5px}.project-scroll-page .project-stage{min-height:680px}}
 @media(max-width:760px){.project-scroll-page .project-heading{padding:30px 20px 10px}.project-scroll-page .project-stage{top:64px;height:calc(100svh - 64px);min-height:700px}.project-scroll-page .scroll-card{width:76vw;margin-left:-38vw;margin-top:calc(76vw / 3 / -2)}.project-scroll-page .info-panel,.project-scroll-page .project-side{width:92vw;left:4vw;right:auto}.project-scroll-page .project-summary{top:12px;transform:translateY(-18px)}.project-scroll-page .project-stage.info-open .project-summary{transform:none}.project-scroll-page .project-side{top:auto;bottom:12px;transform:translateY(18px);gap:8px}.project-scroll-page .project-stage.info-open .project-side{transform:none}.project-scroll-page .project-side .info-box{padding:10px 14px}.project-scroll-page .project-side .info-box:nth-child(2){display:none}.project-scroll-page .project-summary h2{font-size:18px;margin:5px 0}.project-scroll-page .summary-text{font-size:11px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.project-scroll-page .project-status{margin-top:4px;font-size:11px}.project-scroll-page .status-detail{display:none}.project-scroll-page .skills-list{margin-top:7px;gap:5px}.project-scroll-page .skills-list li{font-size:9px;padding:4px 7px}.project-scroll-page .project-repo{margin-top:7px}.project-scroll-page .scroll-hint{bottom:6px;font-size:9px}.project-scroll-page .card-kicker{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.project-scroll-page .info-panel,.project-scroll-page .project-side .info-box{transition:none}}
@@ -152,9 +152,9 @@
 
 </div>
 </section>
-<div class="project-scroll-end">END OF PROJECTS</div>
+
 </main>
-<footer class="footer"><div class="section-inner footer-inner"><span>© 2026 SAM-AIROBOTICS</span><span>DESIGN · SIMULATE · VALIDATE · DEPLOY</span></div></footer>
+
 <script>
 (function(){
 const rail=document.getElementById('projectRail'),stage=document.getElementById('projectStage'),cards=[...document.querySelectorAll('.scroll-card')],helix=document.getElementById('projectHelix'),pole=document.querySelector('.project-pole'),N=cards.length;
