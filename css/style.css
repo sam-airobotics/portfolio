@@ -160,10 +160,10 @@ body.home-page .footer{display:none!important}
  }
 }
 
-/* Final portrait framing: preserve the full head and keep the subject balanced */
+/* Align the portrait artwork with the bottom edge of the hero section */
 @media(min-width:761px){
  .hero--cyberpunk .cyberpunk-art{
-   background-size:auto 86% !important;
-   background-position:center 32% !important;
+   background-size:auto 100% !important;
+   background-position:center bottom !important;
  }
 }
