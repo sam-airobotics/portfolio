@@ -89,3 +89,77 @@ body.home-page .footer{display:none!important}
 @media(prefers-reduced-motion:reduce){
  .orbit-overlay,.orbit-disc,.orbit-trigger,.orbit-disc a{transition:none}
 }
+
+/* Refinement: place the activation point directly over the black hole */
+@media(min-width:761px){
+ .orbit-trigger{top:72.5%;left:50%;width:clamp(108px,11vw,164px)}
+}
+
+/* Open state: expansive red half-ring with navigation distributed along its arc */
+.orbit-overlay{
+ display:block;padding:0;overflow:hidden;
+ background:rgba(0,0,0,.28);
+}
+.orbit-overlay.is-open{
+ background:rgba(0,0,0,.20);
+}
+.orbit-disc{
+ position:absolute;left:50%;bottom:10vh;
+ width:min(82vw,1480px);height:min(66vh,690px);
+ aspect-ratio:auto;padding:0;display:block;
+ transform:translate(-50%,28%) scale(.94);
+ border:3px solid #ff2424;border-bottom:0;
+ border-radius:50% 50% 0 0 / 100% 100% 0 0;
+ background:transparent;box-shadow:none;
+ transition:transform .48s cubic-bezier(.2,.8,.2,1);
+}
+.orbit-overlay.is-open .orbit-disc{transform:translate(-50%,0) scale(1)}
+.orbit-disc::before{
+ content:"";position:absolute;inset:clamp(24px,3.2vw,52px) clamp(24px,3.2vw,52px) 0;
+ border:3px solid #ff2424;border-bottom:0;
+ border-radius:50% 50% 0 0 / 100% 100% 0 0;
+ pointer-events:none;
+}
+.orbit-disc::after{display:none}
+.orbit-disc-label{
+ position:absolute;top:13%;left:50%;transform:translateX(-50%);
+ width:max-content;margin:0;text-align:center;
+ font:600 10px var(--mono);letter-spacing:.28em;color:#ff5367;
+}
+.orbit-disc a{
+ position:absolute;z-index:2;width:clamp(150px,13vw,220px);min-height:58px;
+ padding:0 16px;border:2px solid #ff2424;border-radius:0;
+ background:rgba(4,5,10,.76);backdrop-filter:blur(5px);
+ color:#f4f4f7;font:600 12px var(--mono);letter-spacing:.13em;
+ box-shadow:0 0 20px rgba(255,25,40,.08);
+}
+.orbit-disc a:nth-of-type(1){left:27%;top:27%;transform:translate(-50%,-50%) rotate(-11deg)}
+.orbit-disc a:nth-of-type(2){left:73%;top:27%;transform:translate(-50%,-50%) rotate(11deg)}
+.orbit-disc a:nth-of-type(3){left:14%;top:57%;transform:translate(-50%,-50%) rotate(-48deg)}
+.orbit-disc a:nth-of-type(4){left:86%;top:57%;transform:translate(-50%,-50%) rotate(48deg)}
+.orbit-disc a:nth-of-type(1):hover{transform:translate(-50%,-50%) rotate(-7deg) scale(1.04)}
+.orbit-disc a:nth-of-type(2):hover{transform:translate(-50%,-50%) rotate(7deg) scale(1.04)}
+.orbit-disc a:nth-of-type(3):hover{transform:translate(-50%,-50%) rotate(-43deg) scale(1.04)}
+.orbit-disc a:nth-of-type(4):hover{transform:translate(-50%,-50%) rotate(43deg) scale(1.04)}
+.orbit-close{
+ position:absolute;left:50%;bottom:12%;transform:translateX(-50%);
+ width:42px;height:42px;border:1px solid rgba(255,255,255,.42);
+ background:rgba(10,12,20,.88);font-size:27px;
+}
+@media(max-width:760px){
+ .orbit-trigger{top:49%;width:clamp(100px,28vw,150px)}
+ .orbit-disc{
+   left:50%;bottom:7vh;width:116vw;height:56vh;
+   transform:translate(-50%,25%) scale(.94);
+ }
+ .orbit-overlay.is-open .orbit-disc{transform:translate(-50%,0) scale(1)}
+ .orbit-disc::before{inset:20px 20px 0;border-width:2px}
+ .orbit-disc-label{top:12%;font-size:8px}
+ .orbit-disc a{width:clamp(112px,34vw,160px);min-height:44px;padding:0 9px;font-size:9px;letter-spacing:.06em}
+ .orbit-disc a:nth-of-type(1){left:30%;top:30%;transform:translate(-50%,-50%) rotate(-9deg)}
+ .orbit-disc a:nth-of-type(2){left:70%;top:30%;transform:translate(-50%,-50%) rotate(9deg)}
+ .orbit-disc a:nth-of-type(3){left:18%;top:59%;transform:translate(-50%,-50%) rotate(-35deg)}
+ .orbit-disc a:nth-of-type(4){left:82%;top:59%;transform:translate(-50%,-50%) rotate(35deg)}
+ .orbit-close{bottom:12%;width:36px;height:36px}
+}
+@media(prefers-reduced-motion:reduce){.orbit-disc{transition:none}}
