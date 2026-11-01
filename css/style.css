@@ -159,3 +159,11 @@ body.home-page .footer{display:none!important}
    background-position:center center;
  }
 }
+
+/* Final portrait framing: preserve the full head and keep the subject balanced */
+@media(min-width:761px){
+ .hero--cyberpunk .cyberpunk-art{
+   background-size:auto 86% !important;
+   background-position:center 32% !important;
+ }
+}
