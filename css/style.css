@@ -108,3 +108,13 @@ body.home-page .footer{display:none!important}
  .hero--cyberpunk .cyberpunk-actions{flex-direction:row;flex-wrap:wrap;gap:7px;margin-top:18px}
  .hero--cyberpunk .cyberpunk-button{min-width:0;padding:9px 10px;font-size:9px;gap:9px}
 }
+
+/* Keep the introduction on the left and move the CTA stack to the right */
+@media(min-width:761px){
+ .hero--cyberpunk .cyberpunk-intro{left:clamp(24px,5vw,84px);right:auto;width:min(27vw,360px)}
+ .hero--cyberpunk .cyberpunk-actions{position:absolute;left:auto;right:clamp(28px,6vw,96px);top:50%;bottom:auto;transform:translateY(-50%);margin:0;align-items:stretch;min-width:205px}
+ .hero--cyberpunk .cyberpunk-button{width:100%;min-width:205px}
+}
+@media(max-width:760px){
+ .hero--cyberpunk .cyberpunk-actions{position:static;transform:none;align-items:flex-start}
+}
