@@ -54,3 +54,11 @@ header.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,7,10
 .hero--glitch .hero-scroll{display:none}
 @media(max-width:760px){.hero--glitch{min-height:720px;height:calc(100svh - 60px)}.hero--glitch .glitch-portrait{right:-13%;width:86vw;height:75%;opacity:.48}.hero--glitch .glitch-orbit{width:95vw;right:-25%}.hero--glitch .glitch-content{padding:110px 22px 70px;justify-content:flex-end}.hero--glitch .glitch-copy{max-width:100%}.hero--glitch .glitch-title{font-size:clamp(48px,12vw,78px)}.hero--glitch .glitch-title span{white-space:normal}.hero--glitch .glitch-side-note{top:15%;left:22px}.hero--glitch .glitch-loader{left:22px;bottom:24px}.hero--glitch .glitch-meta{display:none}.hero--glitch .hero-description{max-width:390px;font-size:13px}}
 @media(prefers-reduced-motion:reduce){.hero--glitch .glitch-slice{animation:none!important;display:none}}
+
+/* Cyberpunk artwork-led homepage: image is the hero, keep interface copy minimal */
+.hero--cyberpunk{position:relative;isolation:isolate;display:block;min-height:calc(100svh - 64px);height:calc(100svh - 64px);overflow:hidden;background:#020305}
+.hero--cyberpunk .cyberpunk-art{position:absolute;inset:0;background-color:#020305;background-image:url("../assets/images/Cyberpunk.png");background-repeat:no-repeat;background-position:center center;background-size:contain}
+.hero--cyberpunk .cyberpunk-side{position:absolute;z-index:3;right:clamp(18px,4vw,64px);bottom:clamp(24px,6vh,58px);display:flex;flex-direction:column;align-items:flex-end;gap:7px;color:rgba(255,255,255,.65);font:9px var(--mono);letter-spacing:.2em;text-shadow:0 1px 8px #000}
+.hero--cyberpunk .cyberpunk-side a{margin-top:8px;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);padding:10px 13px;letter-spacing:.14em;transition:background .2s,border-color .2s}
+.hero--cyberpunk .cyberpunk-side a:hover{background:rgba(255,255,255,.1);border-color:#fff}
+@media(max-width:760px){.hero--cyberpunk{min-height:calc(100svh - 60px);height:calc(100svh - 60px)}.hero--cyberpunk .cyberpunk-art{background-size:cover;background-position:52% center}.hero--cyberpunk .cyberpunk-side{right:18px;bottom:22px;font-size:8px}.hero--cyberpunk .cyberpunk-side a{padding:8px 10px}}
