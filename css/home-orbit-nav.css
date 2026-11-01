@@ -859,3 +859,10 @@ body.orbit-menu-open{overflow:hidden}
   .orbit-overlay.is-open .fan{transform:translateX(-50%)}
   .fan-hub,.fan-orb{left:50%;top:100%}
 }
+
+/* Five evenly spaced homepage fan sectors: About, Skills, Projects, Resume, Contact */
+.hero--orbit .fan a{
+  clip-path:polygon(50% 50%,34.5% 0,65.5% 0);
+}
+.hero--orbit .fan li{transition-delay:calc((4 - var(--i))*30ms)}
+.hero--orbit .fan.open li{transition-delay:calc(var(--i)*48ms),calc(var(--i)*48ms),0s}
