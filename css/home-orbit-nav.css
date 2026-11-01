@@ -142,7 +142,7 @@ body.home-page .footer{display:none!important}
 .orbit-disc a:nth-of-type(3):hover{transform:translate(-50%,-50%) rotate(-43deg) scale(1.04)}
 .orbit-disc a:nth-of-type(4):hover{transform:translate(-50%,-50%) rotate(43deg) scale(1.04)}
 .orbit-close{
- position:absolute;left:50%;bottom:12%;transform:translateX(-50%);
+ position:absolute;left:50%;bottom:55%;transform:translateX(-50%);
  width:42px;height:42px;border:1px solid rgba(255,255,255,.42);
  background:rgba(10,12,20,.88);font-size:27px;
 }
@@ -160,6 +160,6 @@ body.home-page .footer{display:none!important}
  .orbit-disc a:nth-of-type(2){left:70%;top:30%;transform:translate(-50%,-50%) rotate(9deg)}
  .orbit-disc a:nth-of-type(3){left:18%;top:59%;transform:translate(-50%,-50%) rotate(-35deg)}
  .orbit-disc a:nth-of-type(4){left:82%;top:59%;transform:translate(-50%,-50%) rotate(35deg)}
- .orbit-close{bottom:12%;width:36px;height:36px}
+ .orbit-close{bottom:49%;width:36px;height:36px}
 }
 @media(prefers-reduced-motion:reduce){.orbit-disc{transition:none}}
