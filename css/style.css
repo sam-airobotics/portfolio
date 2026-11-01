@@ -118,3 +118,36 @@ body.home-page .footer{display:none!important}
 @media(max-width:760px){
  .hero--cyberpunk .cyberpunk-actions{position:static;transform:none;align-items:flex-start}
 }
+
+/* Desktop hero: independent left identity and right-side navigation actions */
+@media(min-width:761px){
+ .hero--cyberpunk .cyberpunk-intro{
+   position:absolute;inset:0;width:auto;height:100%;left:0;right:0;top:0;bottom:0;
+   transform:none;padding:0;background:none;text-align:left;pointer-events:none;
+ }
+ .hero--cyberpunk .cyberpunk-kicker{
+   position:absolute;left:clamp(34px,5vw,90px);top:29%;margin:0;
+   font-size:11px;letter-spacing:.24em;
+ }
+ .hero--cyberpunk .cyberpunk-intro h1{
+   position:absolute;left:clamp(34px,5vw,90px);top:34%;margin:0;
+   font-size:clamp(58px,6.1vw,100px);line-height:.99;letter-spacing:-.065em;
+ }
+ .hero--cyberpunk .cyberpunk-role{
+   position:absolute;left:clamp(34px,5vw,90px);top:57%;margin:0;
+   font-size:14px;letter-spacing:.32em;
+ }
+ .hero--cyberpunk .cyberpunk-actions{
+   position:absolute;right:clamp(34px,6vw,110px);left:auto;top:50%;
+   bottom:auto;transform:translateY(-50%);margin:0;
+   width:clamp(230px,19vw,310px);min-width:0;gap:14px;
+   align-items:stretch;pointer-events:auto;
+ }
+ .hero--cyberpunk .cyberpunk-button{
+   box-sizing:border-box;width:100%;min-width:0;min-height:58px;
+   padding:17px 20px;font-size:14px;letter-spacing:.06em;
+ }
+}
+@media(max-width:760px){
+ .hero--cyberpunk .cyberpunk-intro{pointer-events:auto}
+}
