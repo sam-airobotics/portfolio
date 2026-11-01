@@ -116,7 +116,7 @@
    <li style="--i:5;--a:105deg"><a href="contact.html"><span>Contact</span></a></li>
   </ul>
   <div class="topnav-hub"></div>
-  <button class="topnav-close" id="topnavClose" type="button" aria-label="Close navigation">×</button>
+  <button class="topnav-close" id="topnavClose" type="button" aria-label="Close navigation"><img src="assets/images/black%20hole.png" alt=""></button>
  </nav>
 </div>
 
@@ -168,7 +168,7 @@ function railTop(){return rail.getBoundingClientRect().top+window.scrollY}
 function scrollRange(){return Math.max(1,rail.offsetHeight-window.innerHeight)}
 function measure(){cardW=cards[0].offsetWidth;cardH=cards[0].offsetHeight;pole.style.transform='translateZ('+(-settings.radius*cardW)+'px)';rail.style.height=(window.innerHeight*(1+(N-1)*settings.scrollPerCard))+'px';readScroll();cur=target;layout()}
 function readScroll(){const p=clamp((window.scrollY-railTop())/scrollRange(),0,1);target=p*(N-1)}
-function layout(){for(let i=0;i<N;i++){const d=i-cur,ad=Math.abs(d),th=d*settings.deg*Math.PI/180,x=settings.radius*cardW*Math.sin(th),z=settings.radius*cardW*(Math.cos(th)-1),y=d*settings.lift*cardH,facing=(Math.cos(th)+1)/2,bright=settings.backDim+(1-settings.backDim)*facing,opacity=(1-smoothstep(settings.fadeStart,settings.fadeEnd,ad))*(1-.88*focus*smoothstep(0,.6,ad)),c=cards[i];c.style.left='calc(50% - '+(cardW/2)+'px)';const verticalOffset=Math.min(92,window.innerHeight*.105);c.style.top='calc(50% - '+(cardH/2)+'px + '+verticalOffset+'px)';c.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,'+z.toFixed(1)+'px) rotateY('+(d*settings.deg).toFixed(2)+'deg)';c.style.setProperty('--b',bright.toFixed(3));c.style.setProperty('--o',opacity.toFixed(3));c.style.pointerEvents=opacity<.05?'none':'auto';c.setAttribute('aria-current',ad<.5?'true':'false')}}
+function layout(){for(let i=0;i<N;i++){const d=i-cur,ad=Math.abs(d),th=d*settings.deg*Math.PI/180,x=settings.radius*cardW*Math.sin(th),z=settings.radius*cardW*(Math.cos(th)-1),y=d*settings.lift*cardH,facing=(Math.cos(th)+1)/2,bright=settings.backDim+(1-settings.backDim)*facing,opacity=(1-smoothstep(settings.fadeStart,settings.fadeEnd,ad))*(1-.88*focus*smoothstep(0,.6,ad)),c=cards[i];c.style.left='calc(50% - '+(cardW/2)+'px)';const verticalOffset=Math.min(140,window.innerHeight*.16);c.style.top='calc(50% - '+(cardH/2)+'px + '+verticalOffset+'px)';c.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,'+z.toFixed(1)+'px) rotateY('+(d*settings.deg).toFixed(2)+'deg)';c.style.setProperty('--b',bright.toFixed(3));c.style.setProperty('--o',opacity.toFixed(3));c.style.pointerEvents=opacity<.05?'none':'auto';c.setAttribute('aria-current',ad<.5?'true':'false')}}
 function fillPanels(i){const d=cards[i].dataset;$('projectIndex').textContent='PROJECT '+String(i+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');$('projectTitle').textContent=d.title;$('projectSummaryText').textContent=d.summary;$('projectStatus').textContent=d.status;$('projectFocus').textContent=d.focus;$('projectRepo').href=d.repo;const ul=$('projectSkills');ul.replaceChildren(...d.skills.split('|').map(s=>{const li=document.createElement('li');li.textContent=s;return li}))}
 function showPanels(i){if(openIndex===i)return;fillPanels(i);openIndex=i;stage.classList.add('info-open')}
 function hidePanels(){if(openIndex===-1)return;openIndex=-1;stage.classList.remove('info-open')}
@@ -186,3 +186,8 @@ window.addEventListener('resize',measure);document.documentElement.style.setProp
 /* Hero flip-text effect */
 (function(){const words=[...document.querySelectorAll('.flip-word')];if(!words.length)return;const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let index=0;words.forEach((w,i)=>w.classList.toggle('active',i===0));if(reduce)return;setInterval(()=>{words[index].classList.remove('active');index=(index+1)%words.length;words[index].classList.add('active')},1900)})();
 </script>\n<script src="js/top-circular-nav.js"></script></body></html>
+<style>
+/* Keep the active project heading and tile clear of the fixed black-hole navigation */
+.project-scroll-page .project-title-top{top:clamp(180px,22vh,230px)!important}
+@media(max-width:760px){.project-scroll-page .project-title-top{top:116px!important}}
+</style>
