@@ -83,3 +83,24 @@ body.topnav-open{overflow:hidden}
 .topnav-fan a:hover,.topnav-fan a:focus-visible{
  color:#75e1ff;
 }
+
+
+/* Use the black-hole artwork as the fan menu's central close control */
+.topnav-close{
+ display:grid!important;place-items:center;
+ width:clamp(64px,calc(var(--R)*.32),92px)!important;
+ height:clamp(64px,calc(var(--R)*.32),92px)!important;
+ padding:7px!important;
+ border:0!important;border-radius:50%!important;
+ background:transparent!important;
+ box-shadow:none!important;
+ color:transparent!important;
+ font-size:0!important;
+ overflow:hidden;
+}
+.topnav-close img{
+ display:block;width:100%;height:100%;object-fit:contain;
+ border-radius:50%;
+ filter:drop-shadow(0 0 10px rgba(0,170,255,.28));
+}
+.topnav-close:hover{border:0!important;background:transparent!important}
