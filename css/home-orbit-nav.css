@@ -1,0 +1,91 @@
+/* Homepage: full-frame artwork with an image-anchored circular navigation trigger */
+body.home-page{overflow-x:hidden}
+body.home-page .nav{display:none!important}
+body.home-page .footer{display:none!important}
+.hero--orbit{
+  position:relative;isolation:isolate;display:block;
+  width:100%;height:100svh;min-height:620px;max-height:1100px;
+  overflow:hidden;background:#020305;
+}
+.hero--orbit .cyberpunk-image{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:block;object-fit:contain;object-position:center bottom;
+  z-index:0;user-select:none;-webkit-user-drag:none;
+}
+.hero--orbit .cyberpunk-intro{
+  position:absolute;z-index:2;left:clamp(28px,5vw,90px);top:50%;
+  width:min(31vw,450px);padding:0;margin:0;transform:translateY(-50%);
+  color:#f4f4f7;background:none;pointer-events:none;
+}
+.hero--orbit .cyberpunk-kicker{margin:0 0 24px;font:600 11px var(--mono);letter-spacing:.24em;color:#ff4545}
+.hero--orbit .cyberpunk-kicker span{margin-left:9px;color:rgba(255,255,255,.5)}
+.hero--orbit .cyberpunk-intro h1{margin:0;font:600 clamp(58px,6.4vw,104px)/.98 var(--display);letter-spacing:-.065em}
+.hero--orbit .cyberpunk-intro h1 span{color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.78)}
+.hero--orbit .cyberpunk-role{margin:18px 0 0;font:600 13px var(--mono);letter-spacing:.32em;color:rgba(255,255,255,.82)}
+.hero--orbit .cyberpunk-role span{color:#ff4545}
+.orbit-trigger{
+  position:absolute;z-index:5;left:50%;top:64%;width:clamp(112px,13vw,190px);aspect-ratio:1;
+  transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.24);border-radius:50%;
+  padding:0;background:radial-gradient(circle,rgba(0,0,0,.03) 35%,rgba(0,0,0,.16) 68%,rgba(0,0,0,.02) 70%);
+  cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 0 0 9px rgba(255,255,255,.025),0 0 35px rgba(0,180,255,.10);
+  transition:border-color .25s,box-shadow .25s,transform .25s;
+}
+.orbit-trigger::before,.orbit-trigger::after{content:"";position:absolute;inset:10%;border:1px solid rgba(0,190,255,.25);border-radius:50%;transition:inset .25s,border-color .25s}
+.orbit-trigger::after{inset:22%;border-color:rgba(255,45,135,.22)}
+.orbit-trigger:hover{border-color:rgba(255,255,255,.8);box-shadow:0 0 0 12px rgba(255,255,255,.045),0 0 48px rgba(0,190,255,.24);transform:translate(-50%,-50%) scale(1.035)}
+.orbit-trigger:hover::before{inset:5%;border-color:rgba(0,190,255,.55)}
+.orbit-trigger-core{width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 12px 5px rgba(0,190,255,.6),0 0 28px 10px rgba(188,64,255,.3)}
+.orbit-overlay{
+  position:fixed;z-index:30;inset:0;display:grid;place-items:center;
+  padding:20px;background:rgba(0,0,0,.42);backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0);
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease,backdrop-filter .3s ease;
+}
+.orbit-overlay.is-open{opacity:1;visibility:visible;pointer-events:auto;backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px)}
+.orbit-disc{
+  position:relative;width:min(82vw,520px);aspect-ratio:1;border-radius:50%;
+  display:grid;grid-template-columns:1fr 1fr;align-content:center;align-items:center;
+  gap:14px;padding:clamp(42px,8vw,82px);
+  border:1px solid rgba(255,255,255,.24);
+  background:radial-gradient(circle at 50% 45%,rgba(34,39,57,.97),rgba(8,10,17,.98) 62%,rgba(2,3,6,.99));
+  box-shadow:0 0 0 1px rgba(0,190,255,.12),0 0 70px rgba(0,0,0,.65),inset 0 0 65px rgba(90,50,150,.12);
+  transform:scale(.72);transition:transform .42s cubic-bezier(.2,.8,.2,1);
+}
+.orbit-overlay.is-open .orbit-disc{transform:scale(1)}
+.orbit-disc::before,.orbit-disc::after{content:"";position:absolute;inset:13px;border:1px solid rgba(0,190,255,.22);border-radius:50%;pointer-events:none}
+.orbit-disc::after{inset:25px;border-color:rgba(255,48,128,.16)}
+.orbit-disc-label{grid-column:1/-1;text-align:center;margin:0 0 8px;font:10px var(--mono);letter-spacing:.25em;color:#ff5266}
+.orbit-disc a{
+  position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:8px;
+  min-height:54px;padding:0 13px;border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.035);color:#f4f4f7;text-decoration:none;
+  font:600 12px var(--mono);letter-spacing:.12em;transition:background .2s,border-color .2s,transform .2s;
+}
+.orbit-disc a span{color:#ff5266}
+.orbit-disc a:hover{background:rgba(0,190,255,.10);border-color:rgba(0,190,255,.55);transform:translateY(-2px)}
+.orbit-close{
+  position:absolute;z-index:2;left:50%;bottom:clamp(35px,7vw,65px);transform:translateX(-50%);
+  width:38px;height:38px;border:1px solid rgba(255,255,255,.3);border-radius:50%;
+  background:rgba(255,255,255,.06);color:#fff;font:300 25px/1 var(--display);cursor:pointer;
+}
+.orbit-close:hover{border-color:#ff5266;color:#ff5266}
+@media(max-width:760px){
+ .hero--orbit{height:100svh;min-height:650px}
+ .hero--orbit .cyberpunk-image{object-fit:contain;object-position:center bottom;height:74%;top:0;bottom:auto}
+ .hero--orbit .cyberpunk-intro{left:7%;top:auto;bottom:7%;transform:none;width:86%}
+ .hero--orbit .cyberpunk-kicker{font-size:9px;margin-bottom:13px}
+ .hero--orbit .cyberpunk-intro h1{font-size:clamp(48px,12vw,72px)}
+ .hero--orbit .cyberpunk-role{font-size:10px;margin-top:12px}
+ .orbit-trigger{top:48%;width:clamp(100px,28vw,150px)}
+ .orbit-disc{width:min(88vw,430px);padding:42px;gap:10px}
+ .orbit-disc a{min-height:48px;padding:0 9px;font-size:10px;letter-spacing:.07em}
+ .orbit-disc-label{font-size:9px}
+ .orbit-close{bottom:30px}
+}
+@media(max-width:380px){
+ .orbit-disc{padding:34px}
+ .orbit-disc a{font-size:9px;min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+ .orbit-overlay,.orbit-disc,.orbit-trigger,.orbit-disc a{transition:none}
+}
