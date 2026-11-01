@@ -9,13 +9,15 @@
     <span class="orbit-trigger-core"></span>
   </button>
   <div class="orbit-overlay" id="orbitOverlay" aria-hidden="true">
-    <nav class="orbit-disc" aria-label="Main navigation">
-      <span class="orbit-disc-label">NAVIGATION // 01</span>
-      <a href="about.html">ABOUT <span>↗</span></a>
-      <a href="skills.html">SKILLS <span>↗</span></a>
-      <a href="projects.html">PROJECTS <span>↗</span></a>
-      <a href="contact.html">CONTACT <span>↗</span></a>
-      <button class="orbit-close" id="orbitClose" type="button" aria-label="Close navigation">×</button>
+    <nav class="fan" id="fan" aria-label="Main navigation">
+      <ul>
+        <li style="--i:0; --a:-67.5deg"><a href="about.html"><span>About</span></a></li>
+        <li style="--i:1; --a:-22.5deg"><a href="skills.html"><span>Skills</span></a></li>
+        <li style="--i:2; --a:22.5deg"><a href="projects.html"><span>Projects</span></a></li>
+        <li style="--i:3; --a:67.5deg"><a href="contact.html"><span>Contact</span></a></li>
+      </ul>
+      <div class="fan-hub"></div>
+      <button class="fan-orb" id="orbitClose" type="button" aria-label="Close navigation"></button>
     </nav>
   </div>
 </section></main><footer class="footer"><div class="section-inner footer-inner"><span>© 2026 SAM-AIROBOTICS</span><span>DESIGN · SIMULATE · VALIDATE · DEPLOY</span></div></footer><script src="js/main.js"></script><script src="js/final-touch.js"></script><script src="js/orbit-nav.js"></script><script>(function(){const video=document.getElementById('heroVideo');if(video){let lastX=null,target=0,seeking=false,pending=null;const sensitivity=.8;const seekTo=t=>{if(!video.duration||Number.isNaN(video.duration))return;const c=Math.max(0,Math.min(video.duration,t));if(seeking){pending=c;return}seeking=true;video.currentTime=c};video.addEventListener('loadedmetadata',()=>target=video.currentTime||0);video.addEventListener('seeked',()=>{seeking=false;if(pending!==null){const t=pending;pending=null;seekTo(t)}});window.addEventListener('mousemove',e=>{if(!video.duration)return;if(lastX===null){lastX=e.clientX;return}const dx=e.clientX-lastX;lastX=e.clientX;target+=(dx/window.innerWidth)*sensitivity*video.duration;seekTo(target)});window.addEventListener('mouseleave',()=>lastX=null)}document.querySelectorAll('.scramble').forEach(el=>{const text=el.dataset.text||'';const delay=parseInt(el.dataset.delay||'0',10);const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';el.textContent='';setTimeout(()=>{let n=0;const timer=setInterval(()=>{n+=.6;const r=Math.floor(n);if(r>=text.length){el.textContent=text;clearInterval(timer);return}let s='';for(let i=0;i<text.length;i++){const c=text[i];if(c===' ')s+=' ';else if(i<r)s+=c;else if(i<r+3)s+=chars[Math.floor(Math.random()*chars.length)];else s+=' '}el.textContent=s},28)},delay)});})();</script></body></html>
