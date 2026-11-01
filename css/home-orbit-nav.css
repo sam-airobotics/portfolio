@@ -838,3 +838,24 @@ body.orbit-menu-open{overflow:hidden}
     top:100%;
   }
 }
+
+
+/* Screenshot-calibrated placement: center the trigger on the black-hole core */
+@media (min-width:761px){
+  .hero--orbit{
+    --blackhole-center-x:49.8vw;
+    --blackhole-center-y:73vh;
+  }
+  .hero--orbit .orbit-trigger{
+    left:var(--blackhole-center-x);
+    top:var(--blackhole-center-y);
+    transform:translate(-50%,-50%);
+  }
+  .orbit-overlay .fan{
+    left:var(--blackhole-center-x);
+    top:calc(var(--blackhole-center-y) - var(--R));
+    transform:translateX(-50%);
+  }
+  .orbit-overlay.is-open .fan{transform:translateX(-50%)}
+  .fan-hub,.fan-orb{left:50%;top:100%}
+}
