@@ -738,3 +738,54 @@ body.orbit-menu-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
   .orbit-overlay,.fan,.fan li,.fan a,.fan-orb{transition:none}
 }
+
+
+/* === Shared anchor: black-hole center == fan close-button center === */
+@media (min-width:761px){
+  .hero--orbit{--blackhole-center-y:59.3vh}
+  .hero--orbit .orbit-trigger{
+    left:50%;
+    top:var(--blackhole-center-y);
+    transform:translate(-50%,-50%);
+  }
+  .orbit-overlay{
+    --R:clamp(220px,44vw,340px);
+    display:block;
+    padding:0;
+  }
+  .orbit-overlay .fan{
+    position:absolute;
+    left:50%;
+    top:calc(var(--blackhole-center-y) - var(--R));
+    width:calc(var(--R)*2);
+    height:var(--R);
+    margin:0;
+    transform:translateX(-50%);
+  }
+  .orbit-overlay.is-open .fan{transform:translateX(-50%)}
+  .fan-hub,.fan-orb{left:50%;top:100%}
+}
+@media(max-width:760px){
+  .hero--orbit{--blackhole-center-y:48vh}
+  .hero--orbit .orbit-trigger{
+    left:50%;
+    top:var(--blackhole-center-y);
+    transform:translate(-50%,-50%);
+  }
+  .orbit-overlay{
+    --R:clamp(165px,42vw,220px);
+    display:block;
+    padding:0;
+  }
+  .orbit-overlay .fan{
+    position:absolute;
+    left:50%;
+    top:calc(var(--blackhole-center-y) - var(--R));
+    width:calc(var(--R)*2);
+    height:var(--R);
+    margin:0;
+    transform:translateX(-50%);
+  }
+  .orbit-overlay.is-open .fan{transform:translateX(-50%)}
+  .fan-hub,.fan-orb{left:50%;top:100%}
+}
