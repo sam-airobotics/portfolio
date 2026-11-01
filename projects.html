@@ -69,6 +69,15 @@
 .project-scroll-page .project-stage{top:64px}
 @media(max-width:760px){.project-scroll-page .projects-intro{padding:40px 20px 28px;min-height:calc(100svh - 64px)}.project-scroll-page .projects-intro h1{font-size:clamp(43px,12vw,76px)}.project-scroll-page .intro-copy{margin:20px 0 26px;font-size:13px}.project-scroll-page .intro-manifesto{font-size:clamp(34px,9vw,54px);gap:10px}.project-scroll-page .flip-words{min-width:0;width:calc(100vw - 115px)}.project-scroll-page .intro-bottom{font-size:9px;letter-spacing:.1em;margin-top:32px}}
 @media(prefers-reduced-motion:reduce){.project-scroll-page .flip-word{transition:none}.project-scroll-page .intro-arrow{animation:none}}
+
+/* Project information hierarchy: title above the hero tile, description on the left */
+.project-scroll-page .project-title-top{position:absolute;z-index:6;top:7.5%;left:50%;width:min(680px,54vw);transform:translate(-50%,-18px);text-align:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .45s cubic-bezier(.22,.8,.24,1)}
+.project-scroll-page .project-title-top .eyebrow{font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 9px}
+.project-scroll-page .project-title-top h2{font:600 clamp(26px,3vw,40px)/1.08 var(--display);letter-spacing:-.035em;color:#f4f7fb;margin:0;text-shadow:0 4px 24px rgba(0,0,0,.55)}
+.project-scroll-page .project-stage.info-open .project-title-top{opacity:1;transform:translate(-50%,0)}
+.project-scroll-page .project-summary{top:50%;left:3vw;transform:translate(-34px,-50%);width:min(310px,23vw)}
+.project-scroll-page .project-summary .summary-text{font-size:12.5px;line-height:1.75;color:#c9cdd5;margin:0}
+@media(max-width:760px){.project-scroll-page .project-title-top{top:3%;width:90vw}.project-scroll-page .project-title-top h2{font-size:24px}.project-scroll-page .project-summary{top:auto;bottom:12px;left:4vw;width:92vw;transform:translateY(18px)}.project-scroll-page .project-stage.info-open .project-summary{transform:none}}
 </style>
 </head>
 <body>
@@ -104,7 +113,8 @@
 <div class="scroll-card" tabindex="0" role="button" data-title="F2D Studio" data-summary="A Fusion 360 automation add-in intended to streamline exporting robot description packages for ROS workflows. It connects CAD assembly structure with robot-description generation to reduce repetitive setup in simulation pipelines." data-status="Tooling / development" data-focus="CAD-to-robotics workflow automation" data-skills="Autodesk Fusion 360|Python|CAD automation|URDF|ROS 2" data-repo="https://github.com/sam-airobotics/FusionToDescription" style="--card-bg:url('https://raw.githubusercontent.com/sam-airobotics/FusionToDescription/main/resources/icons/Fusion2Description_Logo.png')"><div class="face front-face" style="background-image:var(--card-bg)"><span class="card-label">F2D Studio</span><span class="card-kicker">CAD / AUTOMATION</span></div><div class="face back-face"></div></div>
 <div class="scroll-card" tabindex="0" role="button" data-title="Hexapod Simulation" data-summary="An 18-DOF six-legged robot simulation using ROS 2 Jazzy and Gazebo Harmonic. The repository includes a tripod-gait controller, ros2_control integration, simulated LiDAR, camera and IMU, EKF state-estimation configuration, and SLAM/Nav2 launch support." data-status="Legged robotics / simulation" data-focus="Gait control and locomotion" data-skills="ROS 2 Jazzy|Gazebo Harmonic|18-DOF|Tripod gait|ros2_control|SLAM|Nav2" data-repo="https://github.com/sam-airobotics/hexapod_simulation" style="--card-bg:url('https://raw.githubusercontent.com/sam-airobotics/hexapod_simulation/main/assets/images/hexapod_gazebo.png')"><div class="face front-face" style="background-image:var(--card-bg)"><span class="card-label">Hexapod<br>Simulation</span><span class="card-kicker">LEGGED ROBOTICS</span></div><div class="face back-face"></div></div>
 </div>
-<aside class="info-panel project-summary" id="projectSummary" aria-live="polite"><p class="eyebrow" id="projectIndex"></p><h2 id="projectTitle"></h2><p class="summary-text" id="projectSummaryText"></p><a class="project-repo" id="projectRepo" href="#" target="_blank" rel="noopener">Explore repository ↗</a></aside>
+<div class="project-title-top" id="projectTitleTop" aria-live="polite"><p class="eyebrow" id="projectIndex"></p><h2 id="projectTitle"></h2></div>
+<aside class="info-panel project-summary" id="projectSummary" aria-live="polite"><p class="summary-text" id="projectSummaryText"></p><a class="project-repo" id="projectRepo" href="#" target="_blank" rel="noopener">Explore repository ↗</a></aside>
 <div class="info-panel project-side" id="projectSide"><section class="info-box"><p class="eyebrow">Project category</p><div class="project-status"><span class="status-dot"></span><span id="projectStatus"></span></div><p class="status-detail" id="projectFocus"></p></section><section class="info-box"><p class="eyebrow">Technologies &amp; skills</p><ul class="skills-list" id="projectSkills"></ul></section></div>
 <p class="scroll-hint" id="scrollHint">Scroll to navigate · select a tile for details</p>
 </div>
