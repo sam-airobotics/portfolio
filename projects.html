@@ -93,6 +93,9 @@
 .project-scroll-page .project-repo{font-size:12px;margin-top:17px}
 @media(max-width:1000px){.project-scroll-page .project-summary{width:min(310px,28vw);padding:18px}.project-scroll-page .project-summary .summary-text{font-size:14px}}
 @media(max-width:760px){.project-scroll-page .project-summary{width:92vw;padding:13px 15px}.project-scroll-page .project-summary .summary-text{font-size:12px;line-height:1.5}}
+
+/* Use transform-based centering for every helix card; avoid unsupported CSS division in margins */
+.project-scroll-page .scroll-card{margin-left:0!important;margin-top:0!important;left:50%;top:50%}
 </style>
 </head>
 <body>
@@ -150,7 +153,7 @@ function railTop(){return rail.getBoundingClientRect().top+window.scrollY}
 function scrollRange(){return Math.max(1,rail.offsetHeight-window.innerHeight)}
 function measure(){cardW=cards[0].offsetWidth;cardH=cards[0].offsetHeight;pole.style.transform='translateZ('+(-settings.radius*cardW)+'px)';rail.style.height=(window.innerHeight*(1+(N-1)*settings.scrollPerCard))+'px';readScroll();cur=target;layout()}
 function readScroll(){const p=clamp((window.scrollY-railTop())/scrollRange(),0,1);target=p*(N-1)}
-function layout(){for(let i=0;i<N;i++){const d=i-cur,ad=Math.abs(d),th=d*settings.deg*Math.PI/180,x=settings.radius*cardW*Math.sin(th),z=settings.radius*cardW*(Math.cos(th)-1),y=d*settings.lift*cardH,facing=(Math.cos(th)+1)/2,bright=settings.backDim+(1-settings.backDim)*facing,opacity=(1-smoothstep(settings.fadeStart,settings.fadeEnd,ad))*(1-.88*focus*smoothstep(0,.6,ad)),c=cards[i];c.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,'+z.toFixed(1)+'px) rotateY('+(d*settings.deg).toFixed(2)+'deg)';c.style.setProperty('--b',bright.toFixed(3));c.style.setProperty('--o',opacity.toFixed(3));c.style.pointerEvents=opacity<.05?'none':'auto';c.setAttribute('aria-current',ad<.5?'true':'false')}}
+function layout(){for(let i=0;i<N;i++){const d=i-cur,ad=Math.abs(d),th=d*settings.deg*Math.PI/180,x=settings.radius*cardW*Math.sin(th),z=settings.radius*cardW*(Math.cos(th)-1),y=d*settings.lift*cardH,facing=(Math.cos(th)+1)/2,bright=settings.backDim+(1-settings.backDim)*facing,opacity=(1-smoothstep(settings.fadeStart,settings.fadeEnd,ad))*(1-.88*focus*smoothstep(0,.6,ad)),c=cards[i];c.style.transform='translate3d(calc(-50% + '+x.toFixed(1)+'px),calc(-50% + '+y.toFixed(1)+'px),'+z.toFixed(1)+'px) rotateY('+(d*settings.deg).toFixed(2)+'deg)';c.style.setProperty('--b',bright.toFixed(3));c.style.setProperty('--o',opacity.toFixed(3));c.style.pointerEvents=opacity<.05?'none':'auto';c.setAttribute('aria-current',ad<.5?'true':'false')}}
 function fillPanels(i){const d=cards[i].dataset;$('projectIndex').textContent='PROJECT '+String(i+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');$('projectTitle').textContent=d.title;$('projectSummaryText').textContent=d.summary;$('projectStatus').textContent=d.status;$('projectFocus').textContent=d.focus;$('projectRepo').href=d.repo;const ul=$('projectSkills');ul.replaceChildren(...d.skills.split('|').map(s=>{const li=document.createElement('li');li.textContent=s;return li}))}
 function showPanels(i){if(openIndex===i)return;fillPanels(i);openIndex=i;stage.classList.add('info-open')}
 function hidePanels(){if(openIndex===-1)return;openIndex=-1;stage.classList.remove('info-open')}
