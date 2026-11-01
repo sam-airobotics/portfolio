@@ -97,6 +97,17 @@
 /* Use transform-based centering for every helix card; avoid unsupported CSS division in margins */
 .project-scroll-page .scroll-card{margin-left:0!important;margin-top:0!important;left:50%;top:50%}
 
+
+/* Match the lower information layout: title and side panels sit below the navigation mark */
+@media(min-width:761px){
+ .project-scroll-page .project-title-top{top:clamp(112px,17vh,168px)!important}
+ .project-scroll-page .project-summary,
+ .project-scroll-page .project-side{top:calc(50% + 72px)!important}
+}
+@media(max-width:760px){
+ .project-scroll-page .project-title-top{top:clamp(96px,15vh,130px)!important}
+}
+
 /* Keep the project heading clearly above the image tile; remove duplicate names from tile faces */
 .project-scroll-page .project-title-top{top:clamp(42px,7vh,76px)!important;z-index:40}
 .project-scroll-page .project-title-top h2{margin:0 0 14px}
