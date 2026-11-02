@@ -22,3 +22,16 @@
 @keyframes orbitCounter{from{transform:rotateX(-62deg) rotateZ(0deg)}to{transform:rotateX(-62deg) rotateZ(-360deg)}}
 @media(max-width:760px){.orbit-skills{min-height:520px}.orbit-stage{--stage:min(94vw,520px)}.orbit-center-core{width:54px;height:54px}.orbit-logo img{width:44%;height:44%}.orbit-hint{font-size:8px;padding:0 12px}}
 @media(prefers-reduced-motion:reduce){.orbit-ring,.orbit-logo{animation:none!important}}
+
+/* Skills orbit layout refinement */
+.skills .skills-heading.skills-heading-centered{display:flex;justify-content:center;text-align:center;margin:0 auto 12px}
+.skills .skills-heading-centered>div{width:100%;text-align:center}
+.skills .skills-heading-centered h1{margin-left:auto;margin-right:auto}
+.skills .skills-intro{display:none!important}
+.orbit-skills{min-height:900px}
+.orbit-stage{--stage:min(92vw,900px);width:var(--stage);height:var(--stage);max-width:900px;max-height:900px}
+.orbit-logo{background:linear-gradient(145deg,#1b2436,#080d18);border-color:rgba(155,178,230,.62);box-shadow:0 8px 24px rgba(0,0,0,.55),0 0 22px rgba(90,130,255,.18)}
+.orbit-logo img{width:64%;height:64%;filter:grayscale(1) brightness(0) invert(1);opacity:1}
+.orbit-logo .orbit-fallback{font-size:13px;text-shadow:0 1px 5px #000}
+.orbit-center-core{width:62px;height:62px}
+@media(max-width:760px){.orbit-skills{min-height:620px}.orbit-stage{--stage:min(96vw,620px)}}
