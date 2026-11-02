@@ -6,7 +6,7 @@
 .orbit-stage::before{content:"";position:absolute;inset:8%;border-radius:50%;border:1px solid rgba(130,150,190,.13);box-shadow:0 0 70px rgba(77,111,255,.08),inset 0 0 70px rgba(77,111,255,.05)}
 .orbit-glow{position:absolute;inset:30%;border-radius:50%;background:radial-gradient(circle,rgba(93,75,255,.18),rgba(0,180,255,.06) 45%,transparent 72%);filter:blur(12px)}
 .orbit-ring{position:absolute;border:1px solid rgba(135,153,194,.25);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%) rotateX(var(--tilt));transform-style:preserve-3d;animation:orbitSpin var(--duration) linear infinite;animation-direction:var(--direction)}
-.orbit-item{position:absolute;left:50%;top:50%;width:var(--badge);height:var(--badge);transform:translate(-50%,-50%) translate(var(--x),var(--y));}
+.orbit-item{position:absolute;width:var(--badge);height:var(--badge);transform:translate(-50%,-50%);}
 .orbit-logo{width:100%;height:100%;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#171d2b,#090d16);border:1px solid rgba(132,153,202,.42);box-shadow:0 8px 22px rgba(0,0,0,.42),0 0 18px rgba(90,110,255,.10);color:#f4f7ff;text-decoration:none;cursor:default;transition:transform .2s,border-color .2s,box-shadow .2s;animation:orbitCounter var(--duration) linear infinite;animation-direction:var(--direction)}
 .orbit-logo:hover,.orbit-logo:focus-visible{transform:scale(1.2);border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent),0 0 24px color-mix(in srgb,var(--accent) 35%,transparent);outline:none}
 .orbit-logo img{width:48%;height:48%;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);pointer-events:none}
