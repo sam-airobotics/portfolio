@@ -29,16 +29,16 @@
     {name:'MATLAB / Simulink',slug:'mathworks',abbr:'MAT',group:'Programming',color:'#f97316'}
   ];
   const ringConfig=[
-    {count:6,radius:18,duration:48,tilt:0,direction:'normal',size:46},
-    {count:7,radius:28,duration:62,tilt:8,direction:'reverse',size:43},
-    {count:6,radius:38,duration:76,tilt:-7,direction:'normal',size:40},
-    {count:6,radius:48,duration:90,tilt:4,direction:'reverse',size:37}
+    {count:6,radius:18,duration:48,tilt:62,yaw:-8,direction:'normal',size:46},
+    {count:7,radius:28,duration:62,tilt:62,yaw:7,direction:'reverse',size:43},
+    {count:6,radius:38,duration:76,tilt:62,yaw:-5,direction:'normal',size:40},
+    {count:6,radius:48,duration:90,tilt:62,yaw:4,direction:'reverse',size:37}
   ];
   let cursor=0;
   ringConfig.forEach((cfg,ringIndex)=>{
     const ring=document.createElement('div');
     ring.className='orbit-ring';
-    ring.style.cssText=`width:${cfg.radius*2}%;height:${cfg.radius*2}%;--duration:${cfg.duration}s;--direction:${cfg.direction};--tilt:${cfg.tilt}deg`;
+    ring.style.cssText=`width:${cfg.radius*2}%;height:${cfg.radius*2}%;--duration:${cfg.duration}s;--direction:${cfg.direction};--tilt:${cfg.tilt}deg;--yaw:${cfg.yaw}deg`;
     for(let i=0;i<cfg.count&&cursor<skills.length;i++,cursor++){
       const skill=skills[cursor],angle=(-90+i*360/cfg.count)*Math.PI/180;
       const item=document.createElement('div');item.className='orbit-item';
