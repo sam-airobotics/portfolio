@@ -29,10 +29,10 @@
     {name:'MATLAB / Simulink',slug:'mathworks',abbr:'MAT',group:'Programming',color:'#f97316'}
   ];
   const ringConfig=[
-    {count:6,radius:18,duration:48,tilt:62,yaw:-8,direction:'normal',size:46},
-    {count:7,radius:28,duration:62,tilt:62,yaw:7,direction:'reverse',size:43},
-    {count:6,radius:38,duration:76,tilt:62,yaw:-5,direction:'normal',size:40},
-    {count:6,radius:48,duration:90,tilt:62,yaw:4,direction:'reverse',size:37}
+    {count:6,radius:18,duration:48,tilt:62,yaw:-8,direction:'normal',size:58},
+    {count:7,radius:28,duration:62,tilt:62,yaw:7,direction:'reverse',size:55},
+    {count:6,radius:38,duration:76,tilt:62,yaw:-5,direction:'normal',size:52},
+    {count:6,radius:48,duration:90,tilt:62,yaw:4,direction:'reverse',size:49}
   ];
   let cursor=0;
   ringConfig.forEach((cfg,ringIndex)=>{
