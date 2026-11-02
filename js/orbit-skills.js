@@ -29,10 +29,10 @@
     {name:'MATLAB / Simulink',slug:'mathworks',abbr:'MAT',group:'Programming',color:'#f97316'}
   ];
   const ringConfig=[
-    {count:6,radius:35,duration:48,tilt:0,direction:'normal',size:46},
-    {count:7,radius:48,duration:62,tilt:8,direction:'reverse',size:43},
-    {count:6,radius:61,duration:76,tilt:-7,direction:'normal',size:40},
-    {count:6,radius:74,duration:90,tilt:4,direction:'reverse',size:37}
+    {count:6,radius:18,duration:48,tilt:0,direction:'normal',size:46},
+    {count:7,radius:28,duration:62,tilt:8,direction:'reverse',size:43},
+    {count:6,radius:38,duration:76,tilt:-7,direction:'normal',size:40},
+    {count:6,radius:48,duration:90,tilt:4,direction:'reverse',size:37}
   ];
   let cursor=0;
   ringConfig.forEach((cfg,ringIndex)=>{
@@ -42,7 +42,7 @@
     for(let i=0;i<cfg.count&&cursor<skills.length;i++,cursor++){
       const skill=skills[cursor],angle=(-90+i*360/cfg.count)*Math.PI/180;
       const item=document.createElement('div');item.className='orbit-item';
-      item.style.cssText=`left:${50+Math.cos(angle)*cfg.radius}%;top:${50+Math.sin(angle)*cfg.radius}%;--badge:${cfg.size}px`;
+      item.style.cssText=`left:${50+Math.cos(angle)*50}%;top:${50+Math.sin(angle)*50}%;--badge:${cfg.size}px`;
       const badge=document.createElement('span');badge.className='orbit-logo';badge.tabIndex=0;badge.setAttribute('role','img');badge.setAttribute('aria-label',skill.name);badge.style.setProperty('--duration',cfg.duration+'s');badge.style.setProperty('--direction',cfg.direction);badge.style.setProperty('--accent',skill.color);
       if(skill.slug){
         const img=document.createElement('img');img.alt='';img.loading='lazy';img.src='https://cdn.simpleicons.org/'+skill.slug;
