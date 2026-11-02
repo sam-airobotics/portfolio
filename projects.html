@@ -108,6 +108,13 @@
  .project-scroll-page .project-title-top{top:clamp(96px,15vh,130px)!important}
 }
 
+
+/* Void AI is the final tile: lower only its title to clear the fixed black-hole logo */
+.project-scroll-page .project-title-top.void-title{top:clamp(112px,14vh,150px)!important}
+@media(max-width:760px){
+ .project-scroll-page .project-title-top.void-title{top:clamp(118px,16vh,150px)!important}
+}
+
 /* Keep the project heading clearly above the image tile; remove duplicate names from tile faces */
 .project-scroll-page .project-title-top{top:clamp(42px,7vh,76px)!important;z-index:40}
 .project-scroll-page .project-title-top h2{margin:0 0 14px}
@@ -180,7 +187,7 @@ function scrollRange(){return Math.max(1,rail.offsetHeight-window.innerHeight)}
 function measure(){cardW=cards[0].offsetWidth;cardH=cards[0].offsetHeight;pole.style.transform='translateZ('+(-settings.radius*cardW)+'px)';rail.style.height=(window.innerHeight*(1+(N-1)*settings.scrollPerCard))+'px';readScroll();cur=target;layout()}
 function readScroll(){const p=clamp((window.scrollY-railTop())/scrollRange(),0,1);target=p*(N-1)}
 function layout(){for(let i=0;i<N;i++){const d=i-cur,ad=Math.abs(d),th=d*settings.deg*Math.PI/180,x=settings.radius*cardW*Math.sin(th),z=settings.radius*cardW*(Math.cos(th)-1),y=d*settings.lift*cardH,facing=(Math.cos(th)+1)/2,bright=settings.backDim+(1-settings.backDim)*facing,opacity=(1-smoothstep(settings.fadeStart,settings.fadeEnd,ad))*(1-.88*focus*smoothstep(0,.6,ad)),c=cards[i];c.style.left='calc(50% - '+(cardW/2)+'px)';const verticalOffset=Math.min(92,window.innerHeight*.105),finalTileOffset=(i===N-1&&Math.abs(d)<.5)?Math.min(130,window.innerHeight*.15):0;c.style.top='calc(50% - '+(cardH/2)+'px + '+verticalOffset+'px + '+finalTileOffset+'px)';c.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,'+z.toFixed(1)+'px) rotateY('+(d*settings.deg).toFixed(2)+'deg)';c.style.setProperty('--b',bright.toFixed(3));c.style.setProperty('--o',opacity.toFixed(3));c.style.pointerEvents=opacity<.05?'none':'auto';c.setAttribute('aria-current',ad<.5?'true':'false')}}
-function fillPanels(i){const d=cards[i].dataset;$('projectIndex').textContent='PROJECT '+String(i+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');$('projectTitle').textContent=d.title;$('projectSummaryText').textContent=d.summary;$('projectStatus').textContent=d.status;$('projectFocus').textContent=d.focus;$('projectRepo').href=d.repo;const ul=$('projectSkills');ul.replaceChildren(...d.skills.split('|').map(s=>{const li=document.createElement('li');li.textContent=s;return li}))}
+function fillPanels(i){const d=cards[i].dataset;$('projectTitleTop').classList.toggle('void-title',i===N-1);$('projectIndex').textContent='PROJECT '+String(i+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');$('projectTitle').textContent=d.title;$('projectSummaryText').textContent=d.summary;$('projectStatus').textContent=d.status;$('projectFocus').textContent=d.focus;$('projectRepo').href=d.repo;const ul=$('projectSkills');ul.replaceChildren(...d.skills.split('|').map(s=>{const li=document.createElement('li');li.textContent=s;return li}))}
 function showPanels(i){if(openIndex===i)return;fillPanels(i);openIndex=i;stage.classList.add('info-open')}
 function hidePanels(){if(openIndex===-1)return;openIndex=-1;stage.classList.remove('info-open')}
 function updatePanels(now){const top=rail.getBoundingClientRect().top,pinned=top<=65&&top>=-(rail.offsetHeight-window.innerHeight)-1,idx=clamp(Math.round(cur),0,N-1),still=Math.abs(cur-idx)<.02&&Math.abs(target-cur)<.02&&now-lastScroll>settings.infoDelay;if(pinned&&still&&!dismissed)showPanels(idx);else if(!pinned||!still)hidePanels();focus+=((openIndex>=0?1:0)-focus)*.12}
