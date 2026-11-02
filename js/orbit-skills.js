@@ -42,7 +42,7 @@
     for(let i=0;i<cfg.count&&cursor<skills.length;i++,cursor++){
       const skill=skills[cursor],angle=(-90+i*360/cfg.count)*Math.PI/180;
       const item=document.createElement('div');item.className='orbit-item';
-      item.style.cssText=`--badge:${cfg.size}px;--x:${Math.cos(angle)*cfg.radius/100*100}%;--y:${Math.sin(angle)*cfg.radius/100*100}%`;
+      item.style.cssText=`left:${50+Math.cos(angle)*cfg.radius}%;top:${50+Math.sin(angle)*cfg.radius}%;--badge:${cfg.size}px`;
       const badge=document.createElement('span');badge.className='orbit-logo';badge.tabIndex=0;badge.setAttribute('role','img');badge.setAttribute('aria-label',skill.name);badge.style.setProperty('--duration',cfg.duration+'s');badge.style.setProperty('--direction',cfg.direction);badge.style.setProperty('--accent',skill.color);
       if(skill.slug){
         const img=document.createElement('img');img.alt='';img.loading='lazy';img.src='https://cdn.simpleicons.org/'+skill.slug;
