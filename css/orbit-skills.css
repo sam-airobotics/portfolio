@@ -39,3 +39,36 @@
  .orbit-hint{font-size:8px;padding:0 12px;margin-top:-10px}
 }
 @media(prefers-reduced-motion:reduce){.orbit-ring,.orbit-logo{animation:none!important}}
+
+
+/* First-viewport composition: keep the complete 3D globe visible on page entry */
+.skills .section-inner{padding-bottom:36px}
+.skills .skills-heading.skills-heading-centered{margin-top:0;margin-bottom:0;padding-top:4px}
+.orbit-skills{
+  min-height:clamp(560px,70vh,760px);
+  height:auto;
+  align-items:center;
+  justify-content:center;
+  overflow:visible;
+  margin-top:-12px;
+}
+.orbit-stage{
+  --w:min(88vw,70vh,820px);
+  width:var(--w);
+  height:var(--w);
+  max-width:100%;
+}
+.orbit-scene{inset:0}
+.orbit-ring{will-change:transform}
+.orbit-center{z-index:10}
+.orbit-center-core{width:clamp(56px,6.2vw,76px);height:clamp(56px,6.2vw,76px)}
+.orbit-tip{display:none}
+@media(max-width:760px){
+  .orbit-skills{min-height:clamp(500px,68vh,650px);margin-top:-4px;overflow:visible}
+  .orbit-stage{--w:min(94vw,66vh,620px)}
+  .orbit-center-core{width:54px;height:54px}
+}
+@media(max-height:720px) and (min-width:761px){
+  .orbit-skills{min-height:620px}
+  .orbit-stage{--w:min(78vw,76vh,700px)}
+}
