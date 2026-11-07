@@ -107,3 +107,6 @@ body.topnav-open{overflow:hidden}
  .topnav-fan{top:42px}
  .topnav-hub{width:92px;height:92px}
 }
+
+/* Seven-item fan menu: slightly narrower wedges keep labels distinct. */
+.topnav-fan a{clip-path:polygon(50% 50%,39% 0,61% 0)}
