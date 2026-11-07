@@ -32,102 +32,48 @@
   <button class="topnav-close" id="topnavClose" type="button" aria-label="Close navigation"><img src="assets/images/black%20hole.png" alt=""></button>
  </nav>
 </div>
-<main>
-<section class="experience-page">
- <div class="section-inner experience-inner">
-  <header class="experience-heading">
-   <p class="section-eyebrow">03 / experience</p>
-   <h1>Experience &amp; leadership</h1>
-   <p class="experience-subtitle">Engineering, team collaboration, and community involvement across robotics and automation.</p>
-  </header>
-
-  <div class="experience-timeline">
-   <article class="experience-entry">
-    <div class="experience-marker"><span class="org-mark cipher-mark">C</span></div>
-    <div class="experience-content">
-     <div class="org-heading"><div><h2>Team CiPHER</h2><p class="org-meta">Full-time · 1 yr 8 mos <span>·</span> Pimpri Chinchwad, Maharashtra, India</p></div><span class="org-type">ROBOTICS TEAM</span></div>
-     <div class="role-block current">
-      <div class="role-heading"><h3>Programming Team Member</h3><span class="status">Present</span></div>
-      <p class="role-meta">Jan 2026 – Present · On-site</p>
-      <ul>
-       <li>Working with ROS 2-based robotic systems and simulation environments.</li>
-       <li>Developing robot control and navigation software.</li>
-       <li>Integrating sensors, actuators, and control algorithms.</li>
-       <li>Building and testing robotic software in simulation before deployment.</li>
-      </ul>
-      <p class="skill-line"><span>◇</span> ROS 2 Jazzy · Gazebo Harmonic · Robot Control · Navigation · Sensor Integration · Simulation</p>
-     </div>
-     <div class="role-block">
-      <h3>Mechanical Team Member [Design and Analysis]</h3>
-      <p class="role-meta">Jul 2025 – Jul 2026 · On-site</p>
-      <ul>
-       <li>Designed and optimized mechanical assemblies using Autodesk Fusion 360, improving structural efficiency and reducing design iteration time.</li>
-       <li>Performed basic FEA simulations to evaluate stress distribution and enhance component reliability.</li>
-       <li>Collaborated in a team of 20 members to develop robot subsystems for competition-level robotics.</li>
-       <li>Contributed to rapid prototyping and iterative design cycles using 3D printing.</li>
-       <li>Applied GD&amp;T principles to improve manufacturability and precision of parts.</li>
-      </ul>
-      <p class="skill-line"><span>◇</span> Geometric Dimensioning &amp; Tolerancing · 3D Printing · Autodesk Fusion 360 · FEA · Mechanical Design</p>
-     </div>
-     <div class="role-block">
-      <h3>Junior Member (Mechanical)</h3>
-      <p class="role-meta">Apr 2025 – Jul 2025</p>
-      <ul>
-       <li>Assisted in mechanical assembly and fabrication of robotic subsystems.</li>
-       <li>Supported senior members in testing and refinement of robot mechanisms.</li>
-       <li>Learned and applied CAD tools (Fusion 360) for part modeling and design improvements.</li>
-      </ul>
-      <p class="skill-line"><span>◇</span> Mechanical Assembly · Autodesk Fusion 360</p>
-     </div>
-    </div>
-   </article>
-
-   <article class="experience-entry">
-    <div class="experience-marker"><span class="org-mark ieee-mark">IEEE</span></div>
-    <div class="experience-content">
-     <div class="org-heading"><div><h2>IEEE Robotics &amp; Automation Society RSCOE</h2><p class="org-meta">1 yr 2 mos · Pune / Pimpri-Chinchwad Area</p></div><span class="org-type">STUDENT SOCIETY</span></div>
-     <div class="role-block current">
-      <div class="role-heading"><h3>Social Media Lead</h3><span class="status">Present</span></div>
-      <p class="role-meta">Dec 2025 – Present</p>
-      <div class="certificate-row"><span class="certificate-thumb">IEEE<br>RAS</span><span>Appointment Certificate</span></div>
-      <p class="skill-line"><span>◇</span> LinkedIn · Instagram · Social Media</p>
-     </div>
-     <div class="role-block">
-      <h3>Member</h3>
-      <p class="role-meta">Oct 2025 – Dec 2025 · Full-time · Pune District, Maharashtra, India</p>
-      <div class="certificate-row"><span class="certificate-thumb ieee-cert">IEEE<br>RAS</span><span>IEEE RAS Membership Certificate</span></div>
-     </div>
-    </div>
-   </article>
-
-   <article class="experience-entry compact-entry">
-    <div class="experience-marker"><span class="org-mark day-mark">DAY</span></div>
-    <div class="experience-content">
-     <div class="org-heading"><div><h2>IEEE Day</h2><p class="org-meta">Aug 2026 – Oct 2026 · 3 mos</p></div><span class="org-type">AMBASSADORSHIP</span></div>
-     <div class="role-block"><h3>IEEE Day Ambassador</h3><p class="role-meta">IEEE Day</p></div>
-    </div>
-   </article>
-
-   <article class="experience-entry">
-    <div class="experience-marker"><span class="org-mark bv-mark">BV</span></div>
-    <div class="experience-content">
-     <div class="org-heading"><div><h2>BVNAB INTELLIGENCE</h2><p class="org-meta">Internship · Jun 2026 – Jul 2026 · 2 mos · Pune / Pimpri-Chinchwad Area · Hybrid</p></div><span class="org-type">INDUSTRY</span></div>
-     <div class="role-block">
-      <h3>Research And Development Intern</h3>
-      <ul>
-       <li>Designed 3D CAD models, sheet-metal components, and mechanical assemblies for machine development.</li>
-       <li>Designed and fabricated 3D-printed components for the testing bench, including slicing, printing, and assembly.</li>
-       <li>Iterated the testing-bench design to improve usability, accessibility, and ease of operation.</li>
-       <li>Contributed to software development, hardware–software integration, testing, and troubleshooting.</li>
-      </ul>
-      <p class="skill-line"><span>◇</span> Autodesk Fusion 360</p>
-     </div>
-    </div>
-   </article>
+<main class="exp-template">
+ <header class="exp-header">
+  <div class="exp-eyebrow">Experience</div>
+  <h1>Where I’ve built, broken and learned.</h1>
+  <p>Robotics teams, an R&amp;D internship and IEEE roles, newest first. Hover to pause, click a card to open the details.</p>
+ </header>
+ <section class="exp-marquee" aria-label="Experience areas">
+  <div class="exp-track" id="expTrack">
+   <a class="exp-card" href="#ieee-day"><div class="exp-thumb t3"><small>Aug – Oct 2026</small><b>IEEE Day Ambassador</b></div><div class="exp-label">IEEE Day</div></a>
+   <a class="exp-card" href="#bvnab"><div class="exp-thumb t4"><small>Jun – Jul 2026</small><b>R&amp;D Intern</b></div><div class="exp-label">BVNAB Intelligence</div></a>
+   <a class="exp-card" href="#cipher-prog"><div class="exp-thumb t2"><small>Jan 2026 – Present</small><b>Programming Team Member</b></div><div class="exp-label">Team CiPHER</div></a>
+   <a class="exp-card" href="#ras-lead"><div class="exp-thumb t7"><small>Dec 2025 – Present</small><b>Social Media Lead</b></div><div class="exp-label">IEEE RAS RSCOE</div></a>
+   <a class="exp-card" href="#ras-member"><div class="exp-thumb t1"><small>Oct – Dec 2025</small><b>Member</b></div><div class="exp-label">IEEE RAS RSCOE</div></a>
+   <a class="exp-card" href="#cipher-mech"><div class="exp-thumb t6"><small>Jul 2025 – Jul 2026</small><b>Mechanical: Design &amp; Analysis</b></div><div class="exp-label">Team CiPHER</div></a>
+   <a class="exp-card" href="#cipher-junior"><div class="exp-thumb t5"><small>Apr – Jul 2025</small><b>Junior Member (Mechanical)</b></div><div class="exp-label">Team CiPHER</div></a>
   </div>
+ </section>
+ <div class="exp-data" id="expData" hidden>
+  <article class="exp-detail" id="ieee-day"><time>Aug 2026 – Oct 2026<br><em>3 mos</em></time><div><h3>IEEE Day Ambassador</h3><div class="exp-org">IEEE Day</div><div class="exp-tags"><span>IEEE Day</span><span>Ambassador</span></div></div></article>
+  <article class="exp-detail" id="bvnab"><time>Jun 2026 – Jul 2026<br><em>2 mos</em></time><div><h3>Research and Development Intern</h3><div class="exp-org">BVNAB Intelligence · Internship</div><div class="exp-meta">Pune / Pimpri-Chinchwad · Hybrid</div><ul><li>Designed 3D CAD models, sheet-metal components and mechanical assemblies for machine development.</li><li>Designed and fabricated 3D-printed components for the testing bench, including slicing, printing and assembly.</li><li>Iterated the testing-bench design to improve usability, accessibility and ease of operation.</li><li>Contributed to software development, hardware–software integration, testing and troubleshooting.</li></ul><div class="exp-tags"><span>Autodesk Fusion 360</span><span>3D Printing</span><span>Sheet Metal</span></div></div></article>
+  <article class="exp-detail" id="cipher-prog"><time>Jan 2026 – Present<br><em>11 mos</em></time><div><h3>Programming Team Member <span class="exp-now">Present</span></h3><div class="exp-org">Team CiPHER · Full-time</div><div class="exp-meta">Pimpri Chinchwad, Maharashtra · On-site</div><ul><li>Working with ROS 2-based robotic systems and simulation environments.</li><li>Developing robot control and navigation software.</li><li>Integrating sensors, actuators and control algorithms.</li><li>Building and testing robotic software in simulation before deployment.</li></ul><div class="exp-tags"><span>ROS 2 Jazzy Jalisco</span><span>Gazebo Harmonic</span><span>+8 skills</span></div></div></article>
+  <article class="exp-detail" id="ras-lead"><time>Dec 2025 – Present<br><em>1 yr</em></time><div><h3>Social Media Lead <span class="exp-now">Present</span></h3><div class="exp-org">IEEE Robotics &amp; Automation Society, RSCOE</div><div class="exp-meta">Pune / Pimpri-Chinchwad Area</div><div class="exp-tags"><span>LinkedIn</span><span>Instagram</span><span>Appointment Certificate</span></div></div></article>
+  <article class="exp-detail" id="ras-member"><time>Oct 2025 – Dec 2025<br><em>3 mos</em></time><div><h3>Member</h3><div class="exp-org">IEEE Robotics &amp; Automation Society, RSCOE · Full-time</div><div class="exp-meta">Pune District, Maharashtra</div><div class="exp-tags"><span>IEEE RAS Membership Certificate</span></div></div></article>
+  <article class="exp-detail" id="cipher-mech"><time>Jul 2025 – Jul 2026<br><em>1 yr 1 mo</em></time><div><h3>Mechanical Team Member (Design and Analysis)</h3><div class="exp-org">Team CiPHER · Full-time</div><div class="exp-meta">Pimpri Chinchwad, Maharashtra · On-site</div><ul><li>Designed and optimized mechanical assemblies in Autodesk Fusion 360, improving structural efficiency and reducing design iteration time.</li><li>Performed basic FEA simulations to evaluate stress distribution and enhance component reliability.</li><li>Collaborated in a team of 20 members to develop robot subsystems for competition-level robotics.</li><li>Contributed to rapid prototyping and iterative design cycles using 3D printing.</li><li>Applied GD&amp;T principles to improve manufacturability and precision of parts.</li></ul><div class="exp-tags"><span>GD&amp;T</span><span>3D Printing</span><span>Fusion 360</span><span>FEA</span><span>+5 skills</span></div></div></article>
+  <article class="exp-detail" id="cipher-junior"><time>Apr 2025 – Jul 2025<br><em>4 mos</em></time><div><h3>Junior Member (Mechanical)</h3><div class="exp-org">Team CiPHER · Full-time</div><div class="exp-meta">Pimpri Chinchwad, Maharashtra · On-site</div><ul><li>Assisted in mechanical assembly and fabrication of robotic subsystems.</li><li>Supported senior members in testing and refinement of robot mechanisms.</li><li>Learned and applied CAD tools (Fusion 360) for part modeling and design improvements.</li></ul><div class="exp-tags"><span>Mechanical Assembly</span><span>Autodesk Fusion 360</span></div></div></article>
  </div>
-</section>
 </main>
+<div class="exp-modal" id="expModal" aria-hidden="true"><div class="exp-sheet" role="dialog" aria-modal="true" aria-labelledby="expSheetTitle"><button class="exp-x" id="expClose" aria-label="Close">×</button><div id="expSheet"></div></div></div>
 <script src="js/top-circular-nav.js"></script>
+<script>
+(function(){
+ const track=document.getElementById('expTrack');
+ const count=track.children.length;
+ for(let i=0;i<count;i++){const clone=track.children[i].cloneNode(true);clone.setAttribute('aria-hidden','true');clone.tabIndex=-1;track.appendChild(clone);}
+ const modal=document.getElementById('expModal'),sheet=document.getElementById('expSheet');
+ function openDetail(id){const source=document.getElementById(id);if(!source)return;sheet.innerHTML=source.innerHTML;const title=sheet.querySelector('h3');if(title)title.id='expSheetTitle';modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';document.getElementById('expClose').focus();}
+ function closeDetail(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+ track.addEventListener('click',e=>{const card=e.target.closest('a.exp-card');if(!card)return;e.preventDefault();openDetail(card.getAttribute('href').slice(1));});
+ document.getElementById('expClose').addEventListener('click',closeDetail);
+ modal.addEventListener('click',e=>{if(e.target===modal)closeDetail();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
+})();
+</script>
 </body>
 </html>
