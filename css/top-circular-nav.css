@@ -110,3 +110,32 @@ body.topnav-open{overflow:hidden}
 
 /* Seven-item fan menu: slightly narrower wedges keep labels distinct. */
 .topnav-fan a{clip-path:polygon(50% 50%,39% 0,61% 0)}
+
+/* Seven-segment label alignment: centre each title within its own wedge. */
+.topnav-fan a span{
+ position:absolute;
+ left:0;
+ right:0;
+ top:calc(var(--R)*.16);
+ width:100%;
+ padding:0 5px;
+ box-sizing:border-box;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ line-height:1.1;
+ white-space:nowrap;
+ letter-spacing:.025em;
+ font-size:clamp(8px,calc(var(--R)*.038),12px);
+ transform:rotate(180deg);
+ transform-origin:center;
+}
+.topnav-fan li:nth-child(3) a span{
+ font-size:clamp(7px,calc(var(--R)*.032),10px);
+ letter-spacing:0;
+}
+@media(max-width:760px){
+ .topnav-fan a span{top:calc(var(--R)*.15);font-size:clamp(7px,calc(var(--R)*.037),10px)}
+ .topnav-fan li:nth-child(3) a span{font-size:clamp(6px,calc(var(--R)*.03),9px)}
+}
