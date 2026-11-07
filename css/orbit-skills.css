@@ -121,3 +121,85 @@
     height:var(--w);
   }
 }
+
+
+/* Skills is a single-screen experience: title + complete globe, no page scroll */
+html:has(body .skills),
+body:has(.skills){
+  height:100%;
+  overflow:hidden!important;
+}
+body:has(.skills) main{
+  height:100svh;
+  overflow:hidden;
+}
+.skills{
+  position:relative;
+  width:100%;
+  height:100svh;
+  min-height:0!important;
+  padding:0!important;
+  margin:0;
+  overflow:hidden!important;
+}
+.skills .section-inner{
+  position:relative;
+  width:100%;
+  max-width:none;
+  height:100%;
+  min-height:0;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+}
+.skills .skills-heading.skills-heading-centered{
+  position:absolute;
+  z-index:12;
+  top:clamp(92px,12vh,130px);
+  left:0;
+  right:0;
+  width:100%;
+  margin:0!important;
+  padding:0!important;
+}
+.skills .skills-heading-centered>div{width:100%;text-align:center}
+.skills .section-eyebrow{margin:0 0 14px}
+.skills .skills-heading-centered h1{margin:0 auto;font-size:clamp(34px,4vw,58px)}
+.orbit-skills{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  min-height:0!important;
+  margin:0!important;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:visible!important;
+  transform:translateY(10vh);
+}
+.orbit-stage{
+  --w:88vw;
+  position:relative;
+  top:0!important;
+  width:var(--w);
+  height:62vh;
+  max-width:none;
+  flex:0 0 auto;
+  margin:0 auto;
+}
+.orbit-scene{position:absolute;inset:0}
+.skills-ribbon{display:none!important}
+.orbit-center{z-index:20}
+@media(max-width:760px){
+  .skills .skills-heading.skills-heading-centered{top:clamp(82px,11vh,112px)}
+  .skills .skills-heading-centered h1{font-size:clamp(30px,8vw,44px)}
+  .orbit-skills{transform:translateY(9vh)}
+  .orbit-stage{--w:96vw;width:var(--w);height:54vh}
+}
+@media(max-height:650px) and (min-width:761px){
+  .skills .skills-heading.skills-heading-centered{top:7vh}
+  .orbit-skills{transform:translateY(12vh)}
+  .orbit-stage{--w:82vw;width:var(--w);height:65vh}
+}
