@@ -255,3 +255,21 @@ body:has(.skills) main{
   .orbit-skills{transform:translateY(12vh)}
   .orbit-stage{--w:min(58vw,78vh,760px);width:var(--w);height:var(--w)}
 }
+
+
+/* Show the technology-name tooltip when an orbit logo is hovered or focused */
+.orbit-tip{
+  display:block!important;
+  z-index:1000;
+  padding:10px 16px;
+  border:1px solid rgba(110,145,220,.7);
+  border-radius:999px;
+  background:rgba(8,13,25,.96);
+  color:#f4f7ff;
+  font:600 12px 'JetBrains Mono',monospace;
+  letter-spacing:.02em;
+  box-shadow:0 8px 28px rgba(0,0,0,.55),0 0 18px rgba(75,112,225,.24);
+  backdrop-filter:blur(10px);
+}
+.orbit-tip.show{opacity:1;transform:translateY(0) scale(1)}
+.orbit-logo{cursor:pointer}
