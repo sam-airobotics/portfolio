@@ -1,0 +1,218 @@
+/* ==========================================================================
+   mobile.css — dedicated mobile / touch layer
+   Loaded LAST on every page, so it only has to override, never rewrite.
+   Desktop (wide, landscape) layouts are untouched; the only global rules are
+   touch-safe fixes (no stuck :hover on touch) and safe-area support.
+   ========================================================================== */
+
+:root{--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px)}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:#05070A}
+body{-webkit-tap-highlight-color:transparent}
+a,button,[role="button"]{touch-action:manipulation}
+img{-webkit-touch-callout:none}
+
+/* Elements that only exist for touch / small screens */
+.orbit-hint,.exp-touch-only,.m-chips{display:none}
+
+/* ---------- Touch devices: never leave a card or button "stuck" in :hover ---------- */
+@media (hover:none){
+  .topnav-trigger:hover{transform:translateX(-50%);box-shadow:none!important}
+  .orbit-trigger:hover{transform:translate(-50%,-50%);border-color:rgba(255,255,255,.24)}
+  .orbit-trigger:hover::before{inset:10%;border-color:rgba(0,190,255,.25)}
+  .exp-card:hover .exp-thumb{transform:none}
+  .exp-card:hover .exp-thumb::before{transform:translate(8px,-8px)}
+  .exp-card:hover .exp-thumb::after{transform:translate(14px,-14px)}
+  .about-card:hover,.skill-panel:hover,.project-card:hover{transform:none;box-shadow:none}
+  a.button:hover,button.button:hover,.contact-link:hover,a.cyberpunk-button:hover,#link:hover{
+    transform:none!important;box-shadow:4px 5px 0 #08090d!important}
+  a.button:active,button.button:active,.contact-link:active,a.cyberpunk-button:active,#link:active{
+    transform:translate(3px,4px)!important;box-shadow:1px 1px 0 #08090d!important}
+}
+
+/* ---------- Short desktop windows / landscape tablets: About must never clip ---------- */
+@media (min-width:901px) and (max-height:620px){
+  body:has(.about-page){height:auto;overflow:auto}
+  .about-page{height:auto;display:block;overflow:visible;padding-top:100px!important;padding-bottom:40px!important}
+}
+
+/* ==========================================================================
+   PHONES & SMALL TABLETS (<= 760px)
+   ========================================================================== */
+@media (max-width:760px){
+
+  /* ----- shared inner-page navigation (black-hole fan) ----- */
+  .topnav-trigger{
+    top:calc(10px + var(--sat));width:64px;height:64px;
+    background:radial-gradient(circle,rgba(2,4,10,.88) 52%,rgba(2,4,10,0) 72%)!important;
+  }
+  .topnav-overlay{--R:clamp(150px,46vw,215px)}
+  .topnav-fan{top:calc(42px + var(--sat))}
+  .topnav-hub{width:92px;height:92px}
+  .topnav-fan a span{top:calc(var(--R)*.15);font-size:clamp(9px,calc(var(--R)*.054),12px);letter-spacing:.02em}
+  .topnav-fan li:nth-child(3) a span{font-size:clamp(8px,calc(var(--R)*.047),11px);letter-spacing:0}
+
+  /* ----- raised buttons: comfortable thumb targets ----- */
+  a.button,button.button,.contact-link,a.cyberpunk-button,#link{
+    min-height:48px;font-size:14px!important;padding:10px 20px!important}
+
+  /* ----- ABOUT ----- */
+  .about-page{padding-top:calc(104px + var(--sat))!important;padding-bottom:calc(48px + var(--sab))!important}
+  .about-hero-grid{gap:22px}
+  .about-hero-grid .portrait-frame{width:min(58vw,230px);margin:0 auto}
+  .about-hero-grid .portrait-frame img{border-radius:18px;border:1px solid var(--border)}
+  .about-hero-grid h1{font-size:clamp(30px,9vw,42px);line-height:1.06}
+  .about-lead{font-size:15px!important}
+  .about-card-grid{gap:14px;margin-top:24px}
+
+  /* ----- EXPERIENCE: vertical timeline-style list instead of the auto-scrolling strip ----- */
+  .exp-template{padding-top:calc(104px + var(--sat));min-height:100dvh}
+  .exp-header{padding:12px 22px 8px}
+  .exp-marquee{overflow:visible;-webkit-mask-image:none;mask-image:none;padding:26px 38px 56px 22px}
+  .exp-track{flex-direction:column;width:100%;gap:34px;animation:none;transform:none!important}
+  .exp-card[aria-hidden="true"]{display:none}
+  .exp-card{width:100%}
+  .exp-thumb{height:128px;padding:16px}
+  .exp-thumb b{font-size:20px}
+  .exp-label{margin-top:14px}
+  .exp-hint-desktop{display:none}
+  .exp-touch-only{display:inline}
+  .exp-modal{align-items:flex-end;padding:0}
+  .exp-sheet{
+    width:100%;max-height:88dvh;border-radius:22px 22px 0 0;border-bottom:0;
+    padding:22px 20px calc(28px + var(--sab));animation:expSheetUp .3s ease;
+  }
+  .exp-sheet::before{content:"";display:block;width:42px;height:4px;border-radius:2px;background:#2a3550;margin:0 auto 18px}
+  .exp-x{display:grid;place-items:center;width:44px;height:44px;top:10px;right:8px;font-size:30px}
+  .exp-detail{padding-top:6px}
+  .exp-detail ul{padding-left:18px;font-size:14px;line-height:1.55}
+  .exp-tags span{font-size:12px;padding:5px 11px}
+
+  /* ----- SKILLS: bigger stage, readable badges, tap hint ----- */
+  .skills .skills-heading.skills-heading-centered{top:calc(clamp(82px,11dvh,112px) + var(--sat))}
+  .orbit-stage{--w:min(94vw,72dvh,680px);width:var(--w);height:var(--w)}
+  .orbit-skills{transform:translateY(7dvh)}
+  .orbit-logo .orbit-fallback{font-size:calc(var(--u)*2.3)}
+  .orbit-logo img{width:58%;height:58%}
+  .orbit-center-core{width:56px;height:56px}
+  .orbit-hint{
+    display:block;position:absolute;left:0;right:0;bottom:calc(16px + var(--sab));z-index:12;
+    margin:0;padding:0 16px;font-size:10px;letter-spacing:.14em;color:#8590aa;text-align:center;pointer-events:none}
+  .orbit-tip{max-width:calc(100vw - 20px);white-space:normal;text-align:center}
+
+  /* ----- PROJECTS (3D helix) ----- */
+  html:has(.helix-projects-page){overscroll-behavior-y:contain}
+  .helix-projects-page .topnav-trigger{top:calc(10px + var(--sat))}
+  .helix-projects-page .hud{padding-top:calc(clamp(88px,12dvh,112px) + var(--sat))}
+  .helix-projects-page .head h1{font-size:clamp(24px,7vw,34px)}
+  .helix-projects-page .panel.left{
+    bottom:calc(var(--sab) + 14px);max-height:44dvh;overflow:auto;-webkit-overflow-scrolling:touch;padding:14px 16px}
+  .helix-projects-page .panel p{font-size:13px;line-height:1.5;margin-bottom:10px}
+  .helix-projects-page .m-chips{display:flex;margin:0 0 12px;gap:6px}
+  .helix-projects-page .m-chips span{font-size:10px;padding:4px 8px}
+  .helix-projects-page #link{min-height:40px;padding:8px 16px!important;font-size:13px!important}
+  .helix-projects-page nav.project-dots{right:4px;gap:4px}
+  .helix-projects-page nav.project-dots button{position:relative;width:8px;height:8px;margin:8px 10px}
+  .helix-projects-page nav.project-dots button::before{content:"";position:absolute;inset:-9px -10px}
+
+  /* ----- RESUME ----- */
+  .resume-page{padding-top:calc(96px + var(--sat));padding-bottom:calc(56px + var(--sab))}
+  .resume-sheet canvas{display:block;width:100%;height:auto}
+  .resume-sheet.is-pdfjs iframe{display:none}
+  .resume-note{margin:12px 0 0;text-align:center;font:500 11px var(--mono);letter-spacing:.08em;color:var(--dim)}
+  .resume-fallback{padding:28px 20px;text-align:center;color:#222;font-family:var(--body)}
+  .resume-fallback p{margin:0 0 16px;font-size:14px;line-height:1.6}
+  .resume-fallback .button{width:100%;margin-top:10px}
+
+  /* ----- CONTACT ----- */
+  .contact-page{min-height:100dvh;display:flex;align-items:center;padding:calc(104px + var(--sat)) 0 calc(56px + var(--sab))}
+  .contact-page .contact-inner h1{font-size:clamp(34px,10vw,48px);line-height:1.05}
+  .contact-page .contact-inner>p{font-size:15px}
+  .contact-links{flex-direction:column;align-items:stretch;gap:14px;max-width:420px;margin:30px auto 0}
+  .contact-link{width:100%;min-height:54px}
+}
+
+@keyframes expSheetUp{from{transform:translateY(40px);opacity:.4}}
+
+/* ==========================================================================
+   HOME HERO — portrait phones, portrait tablets and landscape phones.
+   The artwork and the black-hole button live in .hero-art, whose box has the
+   artwork's exact aspect ratio, so the button always sits on the black hole.
+   ========================================================================== */
+.hero--orbit .hero-art{display:contents}
+
+@media (max-width:760px),(max-aspect-ratio:9/10),(max-height:500px){
+  body.home-page{background:#020305}
+  .hero--orbit{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:clamp(12px,2.6dvh,26px);
+    height:100vh;height:100dvh;min-height:560px;max-height:none;
+    padding:calc(var(--sat) + 8px) 0 calc(var(--sab) + 22px);
+  }
+  .hero--orbit .hero-art{
+    display:block;position:relative;flex:0 0 auto;
+    width:min(100vw,calc(58dvh*1199/1312));aspect-ratio:1199/1312;
+  }
+  .hero--orbit .hero-art picture{display:contents}
+  .hero--orbit .hero-art .cyberpunk-image{
+    position:absolute;inset:0;width:100%;height:100%;top:0;bottom:auto;
+    object-fit:contain;object-position:center;
+  }
+  /* black hole centre inside the artwork: 49.6% / 71.8% */
+  .hero--orbit .hero-art .orbit-trigger{
+    left:49.6%;top:71.8%;width:27%;min-width:92px;max-width:150px;transform:translate(-50%,-50%);
+  }
+  .hero--orbit .cyberpunk-intro{
+    position:relative;left:auto;top:auto;transform:none;
+    width:100%;max-width:560px;padding:0 clamp(22px,7vw,44px);margin:0;
+  }
+  .hero--orbit .cyberpunk-kicker{font-size:10px;margin-bottom:12px}
+  .hero--orbit .cyberpunk-intro h1{font-size:clamp(46px,14vw,72px);line-height:.98}
+  .hero--orbit .cyberpunk-role{font-size:11px;margin-top:14px}
+  .hero--orbit .orbit-hint{
+    display:block;margin:18px 0 0;font:500 9.5px var(--mono);letter-spacing:.2em;color:rgba(255,255,255,.55)}
+  .hero--orbit .orbit-hint::before{content:"";display:inline-block;width:6px;height:6px;margin-right:9px;border-radius:50%;background:#2ec7ff;box-shadow:0 0 8px #2ec7ff;vertical-align:1px}
+
+  /* home fan: positioned from the real black-hole position (set by js/orbit-nav.js) */
+  .orbit-overlay{--R:clamp(150px,46vw,230px)}
+  body.home-page .orbit-overlay .fan{left:var(--bh-x,50vw);top:calc(var(--bh-y,45dvh) - var(--R))}
+  .fan a{font-size:clamp(10px,calc(var(--R)*.062),14px);letter-spacing:.08em}
+}
+
+/* gentle "tap me" pulse on the black hole */
+@media (max-width:760px),(max-aspect-ratio:9/10),(max-height:500px){
+  @media (prefers-reduced-motion:no-preference){
+    .hero--orbit .orbit-trigger{animation:bhPulse 2.6s ease-out infinite}
+  }
+}
+@keyframes bhPulse{
+  0%{box-shadow:0 0 0 0 rgba(46,199,255,.45),0 0 35px rgba(0,180,255,.10)}
+  100%{box-shadow:0 0 0 26px rgba(46,199,255,0),0 0 35px rgba(0,180,255,.10)}
+}
+
+/* Landscape phones: artwork left, introduction right */
+@media (max-height:500px) and (orientation:landscape){
+  .hero--orbit{
+    flex-direction:row;gap:5vw;min-height:0;
+    padding:calc(var(--sat) + 8px) calc(var(--sar) + 16px) calc(var(--sab) + 8px) calc(var(--sal) + 16px);
+  }
+  .hero--orbit .hero-art{width:auto;height:100%}
+  .hero--orbit .cyberpunk-intro{width:auto;max-width:44vw;padding:0}
+  .hero--orbit .cyberpunk-intro h1{font-size:clamp(34px,10vh,58px)}
+  .hero--orbit .orbit-hint{margin-top:12px}
+  .orbit-overlay{--R:clamp(110px,min(28vw,40dvh),190px)}
+  .topnav-overlay{--R:clamp(120px,min(28vw,40dvh),190px)}
+  .skills .skills-heading.skills-heading-centered{top:calc(58px + var(--sat))}
+  .skills .skills-heading-centered h1{font-size:22px}
+  .skills .section-eyebrow{display:none}
+  .orbit-stage{--w:min(74dvh,60vw)}
+  .orbit-skills{transform:translateY(5dvh)}
+  .helix-projects-page .panel.left{left:auto;right:3vw;width:40vw;max-height:70dvh}
+  .helix-projects-page .head small{display:none}
+}
+
+/* very small phones */
+@media (max-width:360px){
+  .about-card h2{font-size:19px}
+  .exp-thumb b{font-size:18px}
+  .helix-projects-page .panel p{font-size:12px}
+}
