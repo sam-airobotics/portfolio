@@ -97,3 +97,27 @@
 @media(max-height:720px) and (min-width:761px){
   .orbit-stage{top:-12vh}
 }
+
+
+/* Desktop globe: occupy at least 75% of the viewport width */
+@media (min-width: 761px){
+  .orbit-skills{
+    width:100%;
+    min-height:clamp(760px,92vh,1120px);
+    overflow:visible;
+  }
+  .orbit-stage{
+    --w:min(90vw,1250px);
+    width:var(--w);
+    height:var(--w);
+    max-width:none;
+    flex:0 0 auto;
+  }
+}
+@media (max-width:760px){
+  .orbit-stage{
+    --w:min(94vw,760px);
+    width:var(--w);
+    height:var(--w);
+  }
+}
