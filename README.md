@@ -41,7 +41,8 @@ portfolio/
 │   ├── top-circular-nav.css
 │   ├── experience.css
 │   ├── orbit-skills.css
-│   └── raised-buttons.css
+│   ├── raised-buttons.css
+│   └── mobile.css            ← mobile / touch layer (loaded last)
 ├── js/
 │   ├── main.js
 │   ├── script.js
@@ -49,7 +50,8 @@ portfolio/
 │   ├── orbit-nav.js
 │   ├── top-circular-nav.js
 │   ├── orbit-skills.js
-│   └── project-ring.js
+│   ├── project-ring.js
+│   └── resume-mobile.js      ← PDF.js renderer for phones
 └── assets/
     ├── docs/
     │   ├── Resume.pdf
@@ -205,6 +207,23 @@ The following findings are based on references in the current tracked HTML, CSS,
 - **Experience:** Update the role cards and matching records in the hidden `#expData` section of `experience.html`.
 - **Resume:** Replace `assets/docs/Resume.pdf` and keep its path in `resume.html` consistent.
 - **New page:** Add its link to both navigation implementations and preserve the page-number convention.
+
+## 13. Mobile experience
+
+All phone/touch behaviour lives in **`css/mobile.css`** (loaded last on every page) plus a few small script changes, so the desktop design is untouched.
+
+| Page | Mobile behaviour |
+|---|---|
+| Home | Artwork + black-hole button share one aspect-ratio box (`.hero-art`), so the button always sits on the black hole; the fan menu is anchored to the button's real position; "tap the black hole" hint + pulse; portrait tablets and landscape phones are handled too. Phones load `Cyberpunk-m.webp` (145 KB) instead of the 1.8 MB PNG. |
+| All inner pages | Black-hole menu respects notches/safe areas, has a dark backing so it stays visible over content, larger fan labels; icon is now `black-hole-nav.png` (123 KB, was 1.3 MB). |
+| About | Compact portrait, comfortable spacing; no clipping on short/landscape screens. |
+| Experience | Vertical card list (no hover-to-pause strip); details open as a bottom sheet with a 44 px close button. |
+| Skills | Larger, legible badges; tap shows the technology name (fixed for Android and iOS); tap hint. |
+| Projects | Scroll maths uses the real section height (fixes the last project never "landing" when the mobile browser toolbar collapses); technologies are shown on phones; render loop sleeps when idle; larger dots hit-area; pull-to-refresh disabled. |
+| Resume | PDF.js renders the CV on phones (iframes can't show PDFs on mobile); tap opens the full PDF; Open/Download fallback. |
+| Contact | Full-width stacked buttons, vertically centred, fixed broken Google Fonts URL. |
+
+Test with browser DevTools device mode (iPhone SE, iPhone 14 Pro, Pixel 7, iPad portrait, and landscape) or on a real phone via `python3 -m http.server 8000` on your LAN.
 
 ---
 

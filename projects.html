@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#05070A"><meta name="color-scheme" content="dark">
 <title>Sameer | Projects</title>
 <link rel="icon" type="image/png" href="assets/images/void.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,9 +79,9 @@ body.helix-projects-page{margin:0;background:var(--bg);color:var(--text);font-fa
 }
 @media(prefers-reduced-motion:reduce){.helix-projects-page .panel{transition:opacity .2s}.helix-projects-page .scroll-note{display:none}}
 </style>
-<link rel="stylesheet" href="css/raised-buttons.css"></head>
+<link rel="stylesheet" href="css/raised-buttons.css"><link rel="stylesheet" href="css/mobile.css"></head>
 <body class="helix-projects-page">
-<button class="topnav-trigger" id="topnavTrigger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="topnavOverlay"><img src="assets/images/black%20hole.png" alt=""></button>
+<button class="topnav-trigger" id="topnavTrigger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="topnavOverlay"><img src="assets/images/black-hole-nav.png" alt=""></button>
 <div class="topnav-overlay" id="topnavOverlay" aria-hidden="true">
  <nav class="topnav-fan" id="topnavFan" aria-label="Main navigation">
   <ul>
@@ -94,14 +94,14 @@ body.helix-projects-page{margin:0;background:var(--bg);color:var(--text);font-fa
    <li style="--i:6;--a:105deg"><a href="contact.html"><span>Contact</span></a></li>
   </ul>
   <div class="topnav-hub"></div>
-  <button class="topnav-close" id="topnavClose" type="button" aria-label="Close navigation"><img src="assets/images/black%20hole.png" alt=""></button>
+  <button class="topnav-close" id="topnavClose" type="button" aria-label="Close navigation"><img src="assets/images/black-hole-nav.png" alt=""></button>
  </nav>
 </div>
 <div id="pages" aria-hidden="true"></div>
 <div class="stage" aria-hidden="true"><div class="tilt"><div class="helix" id="helix"></div></div></div>
 <div class="axis" aria-hidden="true"></div>
 <div class="hud"><div class="head" id="head"><small id="count"></small><h1 id="title"></h1></div></div>
-<aside class="panel left" aria-live="polite"><p id="desc"></p><a id="link" href="#" target="_blank" rel="noopener">Explore repository ↗</a></aside>
+<aside class="panel left" aria-live="polite"><p id="desc"></p><div class="chips m-chips" id="chipsM"></div><a id="link" href="#" target="_blank" rel="noopener">Explore repository ↗</a></aside>
 <aside class="panel right">
  <div class="block"><h2>Project category</h2><div class="cat" id="cat"></div><p class="sub" id="catsub"></p></div>
  <div class="block"><h2>Technologies &amp; skills</h2><div class="chips" id="chips"></div></div>
@@ -121,6 +121,8 @@ const N=PROJECTS.length,STEP=360/Math.max(N,6),PITCH=85,GAP=.14,BACK=.22;
 const $=id=>document.getElementById(id),helix=$("helix"),body=document.body;
 const rad=Math.PI/180,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 $("pages").innerHTML=PROJECTS.map(()=>'<section class="page"></section>').join("");
+const pageEl=document.querySelector("#pages .page");
+const unit=()=>Math.max(1,(pageEl&&pageEl.offsetHeight)||innerHeight);
 let R=300,tiles=[];
 PROJECTS.forEach((p,i)=>{
  const tile=document.createElement("div");tile.className="tile";tile.tabIndex=0;tile.setAttribute("role","button");tile.setAttribute("aria-label",p.title);
@@ -136,25 +138,27 @@ PROJECTS.forEach((p,i)=>{
 const dotEls=[];
 for(let k=0;k<=N*14;k++){const d=document.createElement("i");d.className="dot";helix.appendChild(d);dotEls.push(d)}
 const dots=PROJECTS.map((p,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Go to "+p.title);b.addEventListener("click",()=>goTo(i));$("dots").appendChild(b);return b});
-function goTo(i){i=Math.max(0,Math.min(N-1,i));window.scrollTo({top:i*innerHeight,behavior:reduce?"auto":"smooth"})}
+function goTo(i){i=Math.max(0,Math.min(N-1,i));window.scrollTo({top:i*unit(),behavior:reduce?"auto":"smooth"})}
 function layout(){
  const width=tiles[0].el.offsetWidth||Math.min(520,innerWidth*.7);
  R=(width/2)/Math.tan(STEP*rad/2)*(1+GAP);
  tiles.forEach((t,i)=>t.el.style.transform="translateY("+(i*PITCH)+"px) rotateY("+(i*STEP)+"deg) translateZ("+R+"px)");
  dotEls.forEach((d,k)=>{const u=k/14-.5;d.style.transform="translateY("+(u*PITCH)+"px) rotateY("+(u*STEP)+"deg) translateZ("+R+"px)"});
 }
-let cur=0,shown=-1,frameId=0;
+let cur=0,shown=-1,frameId=0,running=false;
+function kick(){if(!running){running=true;frameId=requestAnimationFrame(frame)}}
 function setActive(i){
  if(i===shown)return;shown=i;const p=PROJECTS[i];
  $("title").textContent=p.title;$("count").textContent="PROJECT "+String(i+1).padStart(2,"0")+" / "+String(N).padStart(2,"0");
  $("desc").textContent=p.desc;$("link").href=p.link;
  $("cat").textContent=p.cat;$("catsub").textContent=p.sub;
  $("chips").replaceChildren(...p.tags.map(t=>{const s=document.createElement("span");s.textContent=t;return s}));
+ $("chipsM").replaceChildren(...[...$("chips").children].map(c=>c.cloneNode(true)));
  tiles.forEach((t,k)=>t.el.classList.toggle("active",k===i));
  dots.forEach((d,k)=>d.setAttribute("aria-current",String(k===i)));
 }
 function frame(){
- const target=Math.max(0,Math.min(N-1,window.scrollY/Math.max(1,innerHeight)));
+ const target=Math.max(0,Math.min(N-1,window.scrollY/unit()));
  cur+=(target-cur)*(reduce?1:.12);if(Math.abs(target-cur)<.0005)cur=target;
  helix.style.transform="translateZ("+(-R)+"px) translateY("+(-cur*PITCH)+"px) rotateY("+(-cur*STEP)+"deg)";
  tiles.forEach((t,i)=>{
@@ -165,16 +169,18 @@ function frame(){
  const near=Math.round(cur),landed=Math.abs(cur-near)<.03&&Math.abs(target-cur)<.02;
  setActive(Math.max(0,Math.min(N-1,near)));body.classList.toggle("open",landed);
  $("head").style.opacity=Math.abs(cur-near)<.3?1:.24;
- frameId=requestAnimationFrame(frame);
+ if(cur!==target){frameId=requestAnimationFrame(frame)}else{running=false}
 }
-window.addEventListener("resize",layout);
+window.addEventListener("resize",()=>{layout();kick()});
+window.addEventListener("scroll",kick,{passive:true});
 window.addEventListener("keydown",e=>{
- const a=Math.max(0,Math.min(N-1,Math.round(window.scrollY/Math.max(1,innerHeight))));
+ const a=Math.max(0,Math.min(N-1,Math.round(window.scrollY/unit())));
  if(["ArrowDown","ArrowRight"].includes(e.key)){e.preventDefault();goTo(Math.min(N-1,a+1))}
  if(["ArrowUp","ArrowLeft"].includes(e.key)){e.preventDefault();goTo(Math.max(0,a-1))}
  if(e.key==="Escape")body.classList.remove("open");
 });
-layout();setActive(0);requestAnimationFrame(frame);
+layout();setActive(0);kick();
+if(matchMedia("(pointer:coarse)").matches)$("scrollNote").textContent="Swipe to rotate \u00b7 Tap a tile";
 </script>
 <script src="js/top-circular-nav.js"></script>
 </body>
