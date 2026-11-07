@@ -1,37 +1,41 @@
-/* Orbiting skills visualization — scoped to the Skills page */
-.skills .section-inner{max-width:1240px}
-.skills .skills-heading{margin-bottom:22px}
-.orbit-skills{position:relative;min-height:680px;display:grid;place-items:center;overflow:hidden;margin:0 auto}
-.orbit-stage{--stage: min(78vw, 690px);position:relative;width:var(--stage);height:var(--stage);max-width:690px;max-height:690px;perspective:1250px;transform-style:preserve-3d;isolation:isolate}
-.orbit-stage::before{content:"";position:absolute;inset:8%;border-radius:50%;border:1px solid rgba(130,150,190,.13);box-shadow:0 0 70px rgba(77,111,255,.08),inset 0 0 70px rgba(77,111,255,.05)}
-.orbit-glow{position:absolute;inset:30%;border-radius:50%;background:radial-gradient(circle,rgba(93,75,255,.18),rgba(0,180,255,.06) 45%,transparent 72%);filter:blur(12px)}
-.orbit-ring{position:absolute;border:1px solid rgba(135,153,194,.25);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%) rotateX(var(--tilt)) rotateY(var(--yaw));transform-style:preserve-3d;animation:orbitSpin var(--duration) linear infinite;animation-direction:var(--direction)}
-.orbit-item{position:absolute;width:var(--badge);height:var(--badge);transform:translate(-50%,-50%);}
-.orbit-logo{width:100%;height:100%;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#171d2b,#090d16);border:1px solid rgba(132,153,202,.42);box-shadow:0 8px 22px rgba(0,0,0,.42),0 0 18px rgba(90,110,255,.10);color:#f4f7ff;text-decoration:none;cursor:default;transition:transform .2s,border-color .2s,box-shadow .2s;animation:orbitCounter var(--duration) linear infinite;animation-direction:var(--direction)}
-.orbit-logo:hover,.orbit-logo:focus-visible{transform:scale(1.2);border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent),0 0 24px color-mix(in srgb,var(--accent) 35%,transparent);outline:none}
-.orbit-logo img{width:48%;height:48%;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);pointer-events:none}
-.orbit-logo .orbit-fallback{font:700 11px 'JetBrains Mono',monospace;letter-spacing:-.04em;color:#eaf0ff}
-.orbit-center{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:transparent;border:0;box-shadow:none;border-radius:0;z-index:2;padding:0;pointer-events:none}
-.orbit-center-core{width:62px;height:62px;display:grid;place-items:center;border-radius:50%;background:#020308;border:1px solid rgba(124,149,208,.24);box-shadow:0 0 15px rgba(50,90,255,.14),inset 0 0 12px rgba(0,0,0,.9);overflow:hidden}
-.orbit-center-core img{width:84%;height:84%;object-fit:contain;display:block;filter:drop-shadow(0 0 7px rgba(75,80,255,.4))}
-.orbit-tip{position:fixed;z-index:1000;pointer-events:none;padding:8px 12px;border:1px solid #38435e;border-radius:8px;background:#0c111d;color:#f4f7ff;font:600 12px 'JetBrains Mono',monospace;box-shadow:0 8px 26px #0009;opacity:0;transform:translateY(5px);transition:opacity .15s,transform .15s;white-space:nowrap}
-.orbit-tip.show{opacity:1;transform:translateY(0)}
-.orbit-hint{text-align:center;color:#78849f;font:500 10px 'JetBrains Mono',monospace;letter-spacing:.08em;margin:-8px 0 0;text-transform:uppercase}
-.orbit-stage:has(.orbit-logo:hover) .orbit-ring,.orbit-stage:has(.orbit-logo:hover) .orbit-logo,.orbit-stage:has(.orbit-logo:focus-visible) .orbit-ring,.orbit-stage:has(.orbit-logo:focus-visible) .orbit-logo{animation-play-state:paused}
-@keyframes orbitSpin{from{transform:translate(-50%,-50%) rotateX(var(--tilt)) rotateY(var(--yaw)) rotateZ(0)}to{transform:translate(-50%,-50%) rotateX(var(--tilt)) rotateY(var(--yaw)) rotateZ(360deg)}}
-@keyframes orbitCounter{from{transform:rotateX(-62deg) rotateZ(0deg)}to{transform:rotateX(-62deg) rotateZ(-360deg)}}
-@media(max-width:760px){.orbit-skills{min-height:520px}.orbit-stage{--stage:min(94vw,520px)}.orbit-center-core{width:54px;height:54px}.orbit-logo img{width:44%;height:44%}.orbit-hint{font-size:8px;padding:0 12px}}
-@media(prefers-reduced-motion:reduce){.orbit-ring,.orbit-logo{animation:none!important}}
-
-/* Skills orbit layout refinement */
-.skills .skills-heading.skills-heading-centered{display:flex;justify-content:center;text-align:center;margin:0 auto 12px}
+/* Orbiting Logos Hero — adapted from the supplied 3D template */
+.skills .section-inner{max-width:1440px}
+.skills .skills-heading.skills-heading-centered{display:flex;justify-content:center;text-align:center;margin:0 auto 8px}
 .skills .skills-heading-centered>div{width:100%;text-align:center}
-.skills .skills-heading-centered h1{margin-left:auto;margin-right:auto}
+.skills .skills-heading-centered h1{margin:0 auto}
 .skills .skills-intro{display:none!important}
-.orbit-skills{min-height:900px}
-.orbit-stage{--stage:min(92vw,900px);width:var(--stage);height:var(--stage);max-width:900px;max-height:900px}
-.orbit-logo{background:linear-gradient(145deg,#1b2436,#080d18);border-color:rgba(155,178,230,.62);box-shadow:0 8px 24px rgba(0,0,0,.55),0 0 22px rgba(90,130,255,.18)}
-.orbit-logo img{width:64%;height:64%;filter:grayscale(1) brightness(0) invert(1);opacity:1}
-.orbit-logo .orbit-fallback{font-size:13px;text-shadow:0 1px 5px #000}
-.orbit-center-core{width:62px;height:62px}
-@media(max-width:760px){.orbit-skills{min-height:620px}.orbit-stage{--stage:min(96vw,620px)}}
+
+.orbit-skills{position:relative;min-height:clamp(650px,90vh,1050px);display:flex;align-items:center;justify-content:center;overflow:hidden;margin:0 auto}
+.orbit-stage{
+  --w:min(94vw,112vh,1080px);
+  --u:calc(var(--w)/100);
+  position:relative;width:var(--w);height:var(--w);flex:none;
+  perspective:calc(var(--w)*.9);perspective-origin:50% 50%;
+  transform-style:preserve-3d;isolation:isolate;
+}
+.orbit-scene{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .25s ease-out}
+.orbit-glow{position:absolute;inset:30%;border-radius:50%;background:radial-gradient(circle,rgba(70,105,255,.17),rgba(0,180,255,.06) 48%,transparent 72%);filter:blur(10px);transform:translateZ(0)}
+.orbit-ring{position:absolute;border-radius:50%;border:1px solid rgba(111,139,197,.28);box-shadow:0 0 0 1px rgba(78,112,190,.05) inset,0 0 26px rgba(68,108,220,.07);transform-style:preserve-3d;animation:orbitTemplateSpin var(--d) linear infinite;animation-direction:var(--dir,normal);pointer-events:none}
+.orbit-item{transform-style:preserve-3d;position:absolute;width:var(--sz);height:var(--sz);margin:calc(var(--sz)/-2) 0 0 calc(var(--sz)/-2);pointer-events:none}
+.orbit-logo{backface-visibility:visible;width:100%;height:100%;border:1px solid rgba(145,170,222,.55);border-radius:50%;background:linear-gradient(145deg,#1b263a,#080e1a);box-shadow:0 8px 24px rgba(0,0,0,.56),0 0 0 2px rgba(86,120,204,.10) inset,0 0 18px rgba(75,112,225,.18);display:grid;place-items:center;animation:orbitTemplateFace var(--d) linear infinite;animation-direction:var(--rdir,normal);transition:scale .22s,border-color .22s,box-shadow .22s;pointer-events:auto;cursor:pointer;outline:none;padding:0}
+.orbit-logo:hover{scale:1.16;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent),0 0 25px color-mix(in srgb,var(--accent) 40%,transparent)}
+.orbit-logo:focus-visible{box-shadow:0 0 0 3px #74a7ff,0 0 24px rgba(80,135,255,.45)}
+.orbit-logo img{width:60%;height:60%;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:1;pointer-events:none}
+.orbit-logo .orbit-fallback{font:700 calc(var(--u)*1.55) 'JetBrains Mono',monospace;letter-spacing:-.05em;color:#f2f6ff;text-shadow:0 1px 5px #000}
+.orbit-stage:has(.orbit-logo:hover) .orbit-ring,.orbit-stage:has(.orbit-logo:hover) .orbit-logo,.orbit-stage:has(.orbit-logo:focus-visible) .orbit-ring,.orbit-stage:has(.orbit-logo:focus-visible) .orbit-logo,.orbit-stage.hold .orbit-ring,.orbit-stage.hold .orbit-logo{animation-play-state:paused}
+.orbit-center{transform:translateZ(0);position:absolute;inset:0;display:grid;place-items:center;text-align:center;pointer-events:none;z-index:5}
+.orbit-center-core{width:clamp(58px,7.2vw,82px);height:clamp(58px,7.2vw,82px);display:grid;place-items:center;border-radius:50%;background:#020308;border:1px solid rgba(124,149,208,.34);box-shadow:0 0 0 7px rgba(3,5,9,.62),0 0 26px rgba(50,90,255,.18),inset 0 0 14px rgba(0,0,0,.9);overflow:hidden}
+.orbit-center-core img{width:84%;height:84%;object-fit:contain;display:block;filter:drop-shadow(0 0 7px rgba(75,80,255,.45))}
+.orbit-tip{position:fixed;z-index:1000;pointer-events:none;padding:9px 16px;border:1px solid var(--accent,#38435e);border-radius:999px;background:#0f131c;color:#f1f4fb;font:600 .9rem 'JetBrains Mono',monospace;box-shadow:0 10px 30px rgba(0,0,0,.42),0 0 18px color-mix(in srgb,var(--accent,#6366f1) 35%,transparent);opacity:0;transform:translateY(6px) scale(.97);transition:opacity .16s,transform .16s;white-space:nowrap}
+.orbit-tip.show{opacity:1;transform:none}
+.orbit-hint{text-align:center;color:#78849f;font:500 10px 'JetBrains Mono',monospace;letter-spacing:.08em;margin:-20px 0 4px;text-transform:uppercase}
+@keyframes orbitTemplateSpin{from{transform:translateZ(var(--z)) rotateX(var(--t)) rotateY(var(--y)) rotateZ(0deg)}to{transform:translateZ(var(--z)) rotateX(var(--t)) rotateY(var(--y)) rotateZ(360deg)}}
+@keyframes orbitTemplateFace{from{transform:rotateZ(0deg) rotateY(calc(var(--y)*-1)) rotateX(calc(var(--t)*-1))}to{transform:rotateZ(-360deg) rotateY(calc(var(--y)*-1)) rotateX(calc(var(--t)*-1))}}
+@media(max-width:760px){
+ .orbit-skills{min-height:clamp(540px,78vh,760px)}
+ .orbit-stage{--w:min(98vw,90vh,760px)}
+ .orbit-center-core{width:58px;height:58px}
+ .orbit-logo img{width:62%;height:62%}
+ .orbit-hint{font-size:8px;padding:0 12px;margin-top:-10px}
+}
+@media(prefers-reduced-motion:reduce){.orbit-ring,.orbit-logo{animation:none!important}}
