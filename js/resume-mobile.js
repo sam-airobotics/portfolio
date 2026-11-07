@@ -3,7 +3,7 @@
    canvas with PDF.js instead; tapping it opens the full PDF in the native viewer.
    Desktop keeps the original iframe. Any failure falls back to Open / Download buttons. */
 (function(){
-  var useCanvas=window.matchMedia('(max-width:900px), (pointer:coarse)').matches;
+  var useCanvas=window.matchMedia('(max-width:900px), (pointer:coarse)').matches||document.documentElement.classList.contains('is-phone');
   var sheet=document.querySelector('.resume-sheet');
   var frame=sheet&&sheet.querySelector('iframe');
   if(!useCanvas||!sheet||!frame)return;
