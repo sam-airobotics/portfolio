@@ -203,3 +203,55 @@ body:has(.skills) main{
   .orbit-skills{transform:translateY(12vh)}
   .orbit-stage{--w:82vw;width:var(--w);height:65vh}
 }
+
+
+/* Restore the centered, naturally proportioned globe; modestly enlarge it */
+.skills{
+  height:100svh;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+.skills .section-inner{
+  height:100%;
+  max-width:none;
+  padding:0;
+  overflow:hidden;
+}
+.skills .skills-heading.skills-heading-centered{
+  top:clamp(92px,12vh,130px);
+}
+.orbit-skills{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  min-height:0!important;
+  margin:0!important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:visible!important;
+  transform:translateY(10vh);
+}
+.orbit-stage{
+  --w:min(54vw,82vh,920px);
+  position:relative;
+  top:0!important;
+  width:var(--w);
+  height:var(--w);
+  max-width:none;
+  flex:0 0 auto;
+  margin:0 auto;
+}
+.orbit-scene{position:absolute;inset:0}
+.skills-ribbon{display:none!important}
+@media(max-width:760px){
+  .skills .skills-heading.skills-heading-centered{top:clamp(82px,11vh,112px)}
+  .orbit-skills{transform:translateY(9vh)}
+  .orbit-stage{--w:min(88vw,68vh,680px);width:var(--w);height:var(--w)}
+}
+@media(max-height:650px) and (min-width:761px){
+  .skills .skills-heading.skills-heading-centered{top:7vh}
+  .orbit-skills{transform:translateY(12vh)}
+  .orbit-stage{--w:min(58vw,78vh,760px);width:var(--w);height:var(--w)}
+}
