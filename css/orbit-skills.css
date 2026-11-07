@@ -84,3 +84,16 @@
 .skills-ribbon{margin-top:18px}
 @media(max-width:760px){.orbit-skills{min-height:clamp(620px,82vh,820px)}.orbit-stage{--w:min(96vw,76vh,760px)}}
 @media(max-height:720px) and (min-width:761px){.orbit-skills{min-height:700px}.orbit-stage{--w:min(88vw,88vh,760px)}}
+
+
+/* Align the globe's center with the requested crosshair intersection */
+.orbit-stage{
+  position:relative;
+  top:-16vh;
+}
+@media(max-width:760px){
+  .orbit-stage{top:-8vh}
+}
+@media(max-height:720px) and (min-width:761px){
+  .orbit-stage{top:-12vh}
+}
