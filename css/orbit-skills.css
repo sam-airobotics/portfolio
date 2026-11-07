@@ -72,3 +72,15 @@
   .orbit-skills{min-height:620px}
   .orbit-stage{--w:min(78vw,76vh,700px)}
 }
+
+
+/* Centered, enlarged globe composition */
+.skills .section-inner{width:min(100%,1600px);max-width:1600px;margin-inline:auto;padding-inline:clamp(16px,3vw,48px)}
+.orbit-skills{width:100%;min-height:clamp(700px,86vh,1000px);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto;overflow:visible}
+.orbit-stage{--w:min(92vw,86vh,1000px);width:var(--w);height:var(--w);max-width:100%;flex:0 0 auto;margin:0 auto}
+.orbit-scene{position:absolute;inset:0}
+.orbit-center{inset:0}
+.orbit-tip{display:none!important}
+.skills-ribbon{margin-top:18px}
+@media(max-width:760px){.orbit-skills{min-height:clamp(620px,82vh,820px)}.orbit-stage{--w:min(96vw,76vh,760px)}}
+@media(max-height:720px) and (min-width:761px){.orbit-skills{min-height:700px}.orbit-stage{--w:min(88vw,88vh,760px)}}
