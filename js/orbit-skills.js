@@ -32,9 +32,9 @@
   ];
   /* Four orbital planes, with the supplied template's different Z depths and tilt */
   const rings=[
-    {size:36,count:4,badge:7,duration:80,direction:'normal',offset:20,tilt:62,yaw:0,z:150},
-    {size:56,count:6,badge:6.4,duration:110,direction:'reverse',offset:70,tilt:58,yaw:-7,z:50},
-    {size:76,count:7,badge:5.8,duration:140,direction:'normal',offset:10,tilt:66,yaw:6,z:-50},
+    {size:30,count:4,badge:7,duration:80,direction:'normal',offset:20,tilt:62,yaw:0,z:150},
+    {size:52,count:6,badge:6.4,duration:110,direction:'reverse',offset:70,tilt:58,yaw:-7,z:50},
+    {size:74,count:7,badge:5.8,duration:140,direction:'normal',offset:10,tilt:66,yaw:6,z:-50},
     {size:96,count:8,badge:5.2,duration:170,direction:'reverse',offset:50,tilt:60,yaw:-4,z:-150}
   ];
   let cursor=0;
