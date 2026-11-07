@@ -38,6 +38,7 @@
     {size:96,count:8,badge:5.2,duration:170,direction:'reverse',offset:50,tilt:60,yaw:-4,z:-150}
   ];
   let cursor=0;
+  const small=window.matchMedia('(max-width:760px)');
   rings.forEach(r=>{
     const ring=document.createElement('div');
     ring.className='orbit-ring';
@@ -48,7 +49,8 @@
       item.className='orbit-item';
       item.style.left=(50+50*Math.cos(a))+'%';
       item.style.top=(50+50*Math.sin(a))+'%';
-      item.style.setProperty('--sz',(r.badge/r.size*100)+'%');
+      item.dataset.base=r.badge/r.size*100;
+      item.style.setProperty('--sz',(item.dataset.base*(small.matches?1.55:1))+'%');
       const badge=document.createElement('button');
       badge.type='button';badge.className='orbit-logo';badge.setAttribute('aria-label',s.name);
       badge.style.cssText='--d:'+r.duration+'s;--rdir:'+r.direction+';--t:'+r.tilt+'deg;--y:'+r.yaw+'deg;--accent:'+s.color;
@@ -62,20 +64,26 @@
     }
     scene.appendChild(ring);
   });
+  // phones: larger badges so logos are legible and tappable (rebuilt on rotate/resize)
+  const applyScale=()=>scene.querySelectorAll('.orbit-item').forEach(it=>it.style.setProperty('--sz',(it.dataset.base*(small.matches?1.55:1))+'%'));
+  small.addEventListener?small.addEventListener('change',applyScale):small.addListener(applyScale);
   const tip=document.createElement('div');tip.className='orbit-tip';document.body.appendChild(tip);
-  let current=null;
+  let current=null,lastType='mouse',wasShown=null,hideT=0;
+  stage.addEventListener('pointerdown',e=>{lastType=e.pointerType||'mouse';wasShown=current},true);
+  addEventListener('keydown',()=>{lastType='key'},true);
   function showTip(b){
     current=b;tip.textContent=b.dataset.name+' · '+b.dataset.group;tip.style.setProperty('--accent',b.style.getPropertyValue('--accent'));
     const r=b.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;
     tip.style.left=Math.max(10,Math.min(innerWidth-w-10,r.left+r.width/2-w/2))+'px';
     tip.style.top=(r.top-h-12>8?r.top-h-12:r.bottom+12)+'px';tip.classList.add('show');
+    clearTimeout(hideT);if(lastType==='touch')hideT=setTimeout(hideTip,3200);
   }
   function hideTip(){current=null;tip.classList.remove('show');stage.classList.remove('hold')}
   stage.addEventListener('pointerover',e=>{const b=e.target.closest('.orbit-logo');if(b&&b!==current&&e.pointerType!=='touch')showTip(b)});
   stage.addEventListener('pointerout',e=>{const b=e.target.closest('.orbit-logo');if(b&&!b.contains(e.relatedTarget))hideTip()});
-  stage.addEventListener('focusin',e=>{const b=e.target.closest('.orbit-logo');if(b)showTip(b)});
+  stage.addEventListener('focusin',e=>{const b=e.target.closest('.orbit-logo');if(b&&lastType!=='touch')showTip(b)});
   stage.addEventListener('focusout',hideTip);
-  stage.addEventListener('click',e=>{const b=e.target.closest('.orbit-logo');if(!b){hideTip();return}if(e.pointerType==='touch'){if(current===b){hideTip()}else{stage.classList.add('hold');showTip(b)}}});
+  stage.addEventListener('click',e=>{const b=e.target.closest('.orbit-logo');if(!b){hideTip();return}if(e.pointerType==='touch'||lastType==='touch'){if(wasShown===b){hideTip()}else{stage.classList.add('hold');showTip(b)}}});
   addEventListener('scroll',hideTip,{passive:true});
   const hero=stage.closest('.skills');
   hero.addEventListener('pointermove',e=>{

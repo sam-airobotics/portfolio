@@ -12,4 +12,5 @@
  overlay.addEventListener('click',e=>{if(e.target===overlay)setOpen(false)});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('is-open'))setOpen(false)});
  fan.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));
+ window.addEventListener('pageshow',e=>{if(e.persisted&&overlay.classList.contains('is-open')){fan.classList.remove('open');overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');trigger.setAttribute('aria-expanded','false');document.body.classList.remove('topnav-open')}});
 })();
