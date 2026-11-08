@@ -1,4 +1,4 @@
-# Sameer Patwardhan — Robotics & AI Portfolio
+# Sameer Patwardhan — Portfolio
 
 A multi-page static portfolio showcasing work and interests in automation, robotics, mechanical design, simulation, software, and AI.
 
