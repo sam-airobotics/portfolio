@@ -181,12 +181,13 @@ img{-webkit-touch-callout:none}
 /* gentle "tap me" pulse on the black hole */
 @media (max-width:760px),(max-aspect-ratio:9/10),(max-height:500px){
   @media (prefers-reduced-motion:no-preference){
-    .hero--orbit .orbit-trigger{animation:bhPulse 2.6s ease-out infinite}
+    .hero--orbit .orbit-trigger{animation:none}
+    .hero--orbit .orbit-trigger .orbit-trigger-core{animation:bhCorePulse 2.6s ease-out infinite}
   }
 }
-@keyframes bhPulse{
-  0%{box-shadow:0 0 0 0 rgba(46,199,255,.45),0 0 35px rgba(0,180,255,.10)}
-  100%{box-shadow:0 0 0 26px rgba(46,199,255,0),0 0 35px rgba(0,180,255,.10)}
+@keyframes bhCorePulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.28);opacity:.72}
 }
 
 /* Landscape phones: artwork left, introduction right */
