@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sam-airobotics.github.io/portfolio/sitemap.xml
